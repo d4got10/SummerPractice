@@ -1,4 +1,4 @@
-﻿procedure InitializeComponent;
+procedure InitializeComponent;
     begin
         self.radioButton1 := new System.Windows.Forms.RadioButton();
         self.radioButton2 := new System.Windows.Forms.RadioButton();
@@ -31,9 +31,9 @@
         // 
         // radioButton1
         // 
-        self.radioButton1.Location := new System.Drawing.Point(6, 28);
+        self.radioButton1.Location := new System.Drawing.Point(21, 25);
         self.radioButton1.Name := 'radioButton1';
-        self.radioButton1.Size := new System.Drawing.Size(197, 24);
+        self.radioButton1.Size := new System.Drawing.Size(182, 24);
         self.radioButton1.TabIndex := 0;
         self.radioButton1.TabStop := true;
         self.radioButton1.Text := 'radioButton1';
@@ -41,9 +41,9 @@
         // 
         // radioButton2
         // 
-        self.radioButton2.Location := new System.Drawing.Point(6, 58);
+        self.radioButton2.Location := new System.Drawing.Point(21, 55);
         self.radioButton2.Name := 'radioButton2';
-        self.radioButton2.Size := new System.Drawing.Size(197, 24);
+        self.radioButton2.Size := new System.Drawing.Size(182, 24);
         self.radioButton2.TabIndex := 0;
         self.radioButton2.TabStop := true;
         self.radioButton2.Text := 'radioButton1';
@@ -51,9 +51,9 @@
         // 
         // radioButton3
         // 
-        self.radioButton3.Location := new System.Drawing.Point(6, 88);
+        self.radioButton3.Location := new System.Drawing.Point(21, 85);
         self.radioButton3.Name := 'radioButton3';
-        self.radioButton3.Size := new System.Drawing.Size(197, 24);
+        self.radioButton3.Size := new System.Drawing.Size(182, 24);
         self.radioButton3.TabIndex := 0;
         self.radioButton3.TabStop := true;
         self.radioButton3.Text := 'radioButton1';
@@ -61,9 +61,9 @@
         // 
         // radioButton4
         // 
-        self.radioButton4.Location := new System.Drawing.Point(6, 118);
+        self.radioButton4.Location := new System.Drawing.Point(21, 115);
         self.radioButton4.Name := 'radioButton4';
-        self.radioButton4.Size := new System.Drawing.Size(197, 24);
+        self.radioButton4.Size := new System.Drawing.Size(182, 24);
         self.radioButton4.TabIndex := 0;
         self.radioButton4.TabStop := true;
         self.radioButton4.Text := 'radioButton1';
@@ -71,9 +71,9 @@
         // 
         // radioButton5
         // 
-        self.radioButton5.Location := new System.Drawing.Point(6, 148);
+        self.radioButton5.Location := new System.Drawing.Point(21, 145);
         self.radioButton5.Name := 'radioButton5';
-        self.radioButton5.Size := new System.Drawing.Size(197, 24);
+        self.radioButton5.Size := new System.Drawing.Size(182, 24);
         self.radioButton5.TabIndex := 0;
         self.radioButton5.TabStop := true;
         self.radioButton5.Text := 'radioButton1';
@@ -81,31 +81,31 @@
         // 
         // radioButton6
         // 
-        self.radioButton6.Location := new System.Drawing.Point(6, 30);
+        self.radioButton6.Checked := true;
+        self.radioButton6.Location := new System.Drawing.Point(21, 30);
         self.radioButton6.Name := 'radioButton6';
         self.radioButton6.Size := new System.Drawing.Size(142, 24);
         self.radioButton6.TabIndex := 0;
         self.radioButton6.TabStop := true;
         self.radioButton6.Text := 'Точка начала';
         self.radioButton6.UseVisualStyleBackColor := true;
+        self.radioButton6.CheckedChanged += radioButton6_CheckedChanged;
         // 
         // radioButton7
         // 
-        self.radioButton7.Location := new System.Drawing.Point(6, 60);
+        self.radioButton7.Location := new System.Drawing.Point(21, 60);
         self.radioButton7.Name := 'radioButton7';
         self.radioButton7.Size := new System.Drawing.Size(142, 24);
         self.radioButton7.TabIndex := 0;
-        self.radioButton7.TabStop := true;
         self.radioButton7.Text := 'Точка конца';
         self.radioButton7.UseVisualStyleBackColor := true;
         // 
         // radioButton8
         // 
-        self.radioButton8.Location := new System.Drawing.Point(6, 90);
+        self.radioButton8.Location := new System.Drawing.Point(21, 90);
         self.radioButton8.Name := 'radioButton8';
         self.radioButton8.Size := new System.Drawing.Size(142, 24);
         self.radioButton8.TabIndex := 0;
-        self.radioButton8.TabStop := true;
         self.radioButton8.Text := 'Преграда';
         self.radioButton8.UseVisualStyleBackColor := true;
         // 
@@ -117,9 +117,9 @@
         self.groupBox1.Controls.Add(self.radioButton3);
         self.groupBox1.Controls.Add(self.radioButton4);
         self.groupBox1.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.groupBox1.Location := new System.Drawing.Point(319, 32);
+        self.groupBox1.Location := new System.Drawing.Point(37, 414);
         self.groupBox1.Name := 'groupBox1';
-        self.groupBox1.Size := new System.Drawing.Size(209, 195);
+        self.groupBox1.Size := new System.Drawing.Size(209, 185);
         self.groupBox1.TabIndex := 1;
         self.groupBox1.TabStop := false;
         self.groupBox1.Text := 'Алгоритмы';
@@ -130,7 +130,7 @@
         self.groupBox2.Controls.Add(self.radioButton6);
         self.groupBox2.Controls.Add(self.radioButton8);
         self.groupBox2.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.groupBox2.Location := new System.Drawing.Point(55, 32);
+        self.groupBox2.Location := new System.Drawing.Point(37, 20);
         self.groupBox2.Name := 'groupBox2';
         self.groupBox2.Size := new System.Drawing.Size(209, 144);
         self.groupBox2.TabIndex := 1;
@@ -140,47 +140,51 @@
         // button1
         // 
         self.button1.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.button1.Location := new System.Drawing.Point(55, 335);
+        self.button1.Location := new System.Drawing.Point(37, 284);
         self.button1.Name := 'button1';
         self.button1.Size := new System.Drawing.Size(209, 33);
         self.button1.TabIndex := 4;
         self.button1.Text := 'Выполнить';
         self.button1.UseVisualStyleBackColor := true;
+        self.button1.Click += button1_Click;
         // 
         // button2
         // 
         self.button2.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.button2.Location := new System.Drawing.Point(55, 296);
+        self.button2.Location := new System.Drawing.Point(37, 323);
         self.button2.Name := 'button2';
         self.button2.Size := new System.Drawing.Size(209, 33);
         self.button2.TabIndex := 4;
         self.button2.Text := 'Остановить';
         self.button2.UseVisualStyleBackColor := true;
+        self.button2.Click += button2_Click;
         // 
         // button3
         // 
         self.button3.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.button3.Location := new System.Drawing.Point(55, 374);
+        self.button3.Location := new System.Drawing.Point(37, 362);
         self.button3.Name := 'button3';
         self.button3.Size := new System.Drawing.Size(209, 37);
         self.button3.TabIndex := 4;
         self.button3.Text := 'Продвинуться на шаг';
         self.button3.UseVisualStyleBackColor := true;
+        self.button3.Click += button3_Click;
         // 
         // button4
         // 
         self.button4.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.button4.Location := new System.Drawing.Point(55, 190);
+        self.button4.Location := new System.Drawing.Point(37, 178);
         self.button4.Name := 'button4';
         self.button4.Size := new System.Drawing.Size(209, 37);
         self.button4.TabIndex := 4;
         self.button4.Text := 'Очистить поле';
         self.button4.UseVisualStyleBackColor := true;
+        self.button4.Click += button4_Click;
         // 
         // button5
         // 
         self.button5.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.button5.Location := new System.Drawing.Point(55, 233);
+        self.button5.Location := new System.Drawing.Point(37, 221);
         self.button5.Name := 'button5';
         self.button5.Size := new System.Drawing.Size(209, 37);
         self.button5.TabIndex := 4;
@@ -189,8 +193,8 @@
         // 
         // button6
         // 
-        self.button6.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.button6.Location := new System.Drawing.Point(319, 374);
+        self.button6.Font := new System.Drawing.Font('Microsoft Sans Serif', 9, System.Drawing.FontStyle.Bold);
+        self.button6.Location := new System.Drawing.Point(37, 756);
         self.button6.Name := 'button6';
         self.button6.Size := new System.Drawing.Size(209, 37);
         self.button6.TabIndex := 4;
@@ -240,7 +244,7 @@
         self.groupBox3.Controls.Add(self.radioButton10);
         self.groupBox3.Controls.Add(self.radioButton11);
         self.groupBox3.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.groupBox3.Location := new System.Drawing.Point(319, 233);
+        self.groupBox3.Location := new System.Drawing.Point(37, 615);
         self.groupBox3.Name := 'groupBox3';
         self.groupBox3.Size := new System.Drawing.Size(209, 73);
         self.groupBox3.TabIndex := 6;
@@ -250,7 +254,7 @@
         // label1
         // 
         self.label1.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.label1.Location := new System.Drawing.Point(319, 316);
+        self.label1.Location := new System.Drawing.Point(37, 698);
         self.label1.Name := 'label1';
         self.label1.Size := new System.Drawing.Size(163, 23);
         self.label1.TabIndex := 7;
@@ -260,7 +264,7 @@
         // label2
         // 
         self.label2.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.label2.Location := new System.Drawing.Point(319, 345);
+        self.label2.Location := new System.Drawing.Point(37, 727);
         self.label2.Name := 'label2';
         self.label2.Size := new System.Drawing.Size(163, 23);
         self.label2.TabIndex := 7;
@@ -270,7 +274,7 @@
         // label3
         // 
         self.label3.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.label3.Location := new System.Drawing.Point(488, 316);
+        self.label3.Location := new System.Drawing.Point(197, 698);
         self.label3.Name := 'label3';
         self.label3.Size := new System.Drawing.Size(82, 23);
         self.label3.TabIndex := 7;
@@ -278,14 +282,14 @@
         // label4
         // 
         self.label4.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.label4.Location := new System.Drawing.Point(488, 345);
+        self.label4.Location := new System.Drawing.Point(197, 727);
         self.label4.Name := 'label4';
         self.label4.Size := new System.Drawing.Size(82, 23);
         self.label4.TabIndex := 7;
         // 
         // Form1
         // 
-        self.ClientSize := new System.Drawing.Size(582, 453);
+        self.ClientSize := new System.Drawing.Size(282, 813);
         self.Controls.Add(self.label2);
         self.Controls.Add(self.label4);
         self.Controls.Add(self.label3);
@@ -299,8 +303,13 @@
         self.Controls.Add(self.groupBox2);
         self.Controls.Add(self.groupBox1);
         self.Controls.Add(self.groupBox3);
+        self.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
+        self.FormBorderStyle := System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+        self.Location := new System.Drawing.Point(150, 100);
         self.Name := 'Form1';
-        self.Text := 'Визуализация алгоритмов поиска кратчайшего пути';
+        self.StartPosition := System.Windows.Forms.FormStartPosition.Manual;
+        self.Text := 'Параметры';
+        self.Load += Form1_Load;
         self.groupBox1.ResumeLayout(false);
         self.groupBox2.ResumeLayout(false);
         self.groupBox3.ResumeLayout(false);

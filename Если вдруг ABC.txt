@@ -1,0 +1,79 @@
+type
+   RectangleStamp = class 
+    x,y: integer;(* координаты левого верхнего угла *)
+    
+   (* Конcтруктор класса: *)
+    constructor (xx,yy: integer);
+    begin
+      x := xx; y := yy;
+    end;
+    
+    {Штамп клетки}
+    procedure Stamp;
+    begin
+    (* Устанавливаем свойство "цвет" объекта Brush:*)
+      Rectangle(x, y, x + 1, y + 1); (* рисуем клетку *)
+    end;
+   end; //RectangleStamp class
+
+
+  Form1 = class(Form)
+    procedure button6_Click(sender: Object; e: EventArgs);
+    procedure Form1_Load(sender: Object; e: EventArgs);
+  {$region FormDesigner}
+  
+  private
+    {$resource Unit1.Form1.resources}
+    radioButton2: RadioButton;
+    radioButton3: RadioButton;
+    radioButton4: RadioButton;
+    radioButton5: RadioButton;
+    radioButton6: RadioButton;
+    radioButton7: RadioButton;
+    radioButton8: RadioButton;
+    groupBox1: GroupBox;
+    groupBox2: GroupBox;
+    button1: Button;
+    button2: Button;
+    button3: Button;
+    button4: Button;
+    button5: Button;
+    button6: Button;
+    radioButton9: RadioButton;
+    radioButton10: RadioButton;
+    radioButton11: RadioButton;
+    groupBox3: GroupBox;
+    label1: &Label;
+    label2: &Label;
+    label3: &Label;
+    label4: &Label;
+    radioButton1: RadioButton;
+    {$include Unit1.Form1.inc}
+  {$endregion FormDesigner}
+  public
+    constructor;
+    begin
+      InitializeComponent;
+    end;
+  end; //Form1 class
+
+implementation
+
+procedure Form1.Form1_Load(sender: Object; e: EventArgs);
+var
+  cell: RectangleStamp; //переменная-объект для хранения штампа
+
+begin
+  SetMathematicCoords(0, 20, 20, true);
+  {SetCoordinateScale(20,20);
+  cell := new RectangleStamp(0, 0);
+  for var i:=1 to 20 do begin
+    for var j:=1 to 20 do begin
+      cell.Stamp;
+      inc(cell.x);
+    end;
+    (* сдвигаем штамп на начало строки и вниз *)
+    cell.x := 0;
+    inc(cell.y);
+  end;}
+end;
