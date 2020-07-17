@@ -36,7 +36,7 @@ procedure InitializeComponent;
         self.radioButton1.Size := new System.Drawing.Size(182, 24);
         self.radioButton1.TabIndex := 0;
         self.radioButton1.TabStop := true;
-        self.radioButton1.Text := 'radioButton1';
+        self.radioButton1.Text := 'Дейкстра';
         self.radioButton1.UseVisualStyleBackColor := true;
         // 
         // radioButton2
@@ -89,7 +89,6 @@ procedure InitializeComponent;
         self.radioButton6.TabStop := true;
         self.radioButton6.Text := 'Точка начала';
         self.radioButton6.UseVisualStyleBackColor := true;
-        self.radioButton6.CheckedChanged += radioButton6_CheckedChanged;
         // 
         // radioButton7
         // 
@@ -168,7 +167,6 @@ procedure InitializeComponent;
         self.button3.TabIndex := 4;
         self.button3.Text := 'Продвинуться на шаг';
         self.button3.UseVisualStyleBackColor := true;
-        self.button3.Click += button3_Click;
         // 
         // button4
         // 
@@ -309,7 +307,6 @@ procedure InitializeComponent;
         self.Name := 'Form1';
         self.StartPosition := System.Windows.Forms.FormStartPosition.Manual;
         self.Text := 'Параметры';
-        self.Load += Form1_Load;
         self.groupBox1.ResumeLayout(false);
         self.groupBox2.ResumeLayout(false);
         self.groupBox3.ResumeLayout(false);

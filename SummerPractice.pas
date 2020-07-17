@@ -1,4 +1,4 @@
-﻿uses Unit1;
+﻿uses Unit1, Unit2;
 
 begin
   System.Windows.Forms.Application.EnableVisualStyles();
