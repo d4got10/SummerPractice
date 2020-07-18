@@ -1,5 +1,6 @@
 procedure InitializeComponent;
     begin
+        self.components := new System.ComponentModel.Container();
         self.radioButton1 := new System.Windows.Forms.RadioButton();
         self.radioButton2 := new System.Windows.Forms.RadioButton();
         self.radioButton3 := new System.Windows.Forms.RadioButton();
@@ -24,6 +25,7 @@ procedure InitializeComponent;
         self.label2 := new System.Windows.Forms.Label();
         self.label3 := new System.Windows.Forms.Label();
         self.label4 := new System.Windows.Forms.Label();
+        self.timer1 := new System.Windows.Forms.Timer(self.components);
         self.groupBox1.SuspendLayout();
         self.groupBox2.SuspendLayout();
         self.groupBox3.SuspendLayout();
@@ -284,6 +286,10 @@ procedure InitializeComponent;
         self.label4.Name := 'label4';
         self.label4.Size := new System.Drawing.Size(82, 23);
         self.label4.TabIndex := 7;
+        // 
+        // timer1
+        // 
+        self.timer1.Tick += timer1_Tick;
         // 
         // Form1
         // 
