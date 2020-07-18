@@ -2,7 +2,7 @@
 
 interface
 
-uses System, System.Drawing, System.Windows.Forms;
+uses System, System.Drawing, System.Windows.Forms, Unit2, GraphWPF;
 
 type
   Form1 = class(Form)
@@ -10,6 +10,7 @@ type
     procedure button1_Click(sender: Object; e: EventArgs);
     procedure button2_Click(sender: Object; e: EventArgs);
     procedure button4_Click(sender: Object; e: EventArgs);
+    procedure Form1_Deactivate(sender: Object; e: EventArgs);
   {$region FormDesigner}
   private
     {$resource Unit1.Form1.resources}
@@ -50,7 +51,7 @@ implementation
 
 procedure Form1.button6_Click(sender: Object; e: EventArgs);
 begin
-  
+  Window.Close;
 end;
 
 procedure Form1.button1_Click(sender: Object; e: EventArgs);
@@ -67,7 +68,15 @@ end;
 
 procedure Form1.button4_Click(sender: Object; e: EventArgs);
 begin
-  
+  Window.Clear;
+  SetMathematicCoords(0, 20, 0, true);
+end;
+
+procedure Form1.Form1_Deactivate(sender: Object; e: EventArgs);
+begin
+  if radiobutton6.Checked = true then c := RGB(0,255,0);
+  if radiobutton7.Checked = true then c := RGB(255,0,0);
+  if radiobutton8.Checked = true then c := RGB(0,0,0);
 end;
 
 end.
