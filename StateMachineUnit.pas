@@ -22,6 +22,7 @@ interface
         
         procedure Act();
       public
+        //Конструктор
         constructor(gridSize : integer);
         begin
           _gridSize := gridSize;
@@ -30,11 +31,17 @@ interface
             _grid[i] := new integer[_gridSize];
         end;
         
+        //Поля
+        property Grid : Grid read _grid;
+        
+        //События
         property OnGridChange : Action read _onGridChange write _onGridChange;
         property OnComplete : Action read _onComplete write _onComplete;
         property OnStart : Action read _onStart write _onStart;
         property OnSpeedChange : ActionInt read _onSpeedChange write _onSpeedChange;
         
+        //Методы
+        procedure SetCellType(type : integer; x : integer; y : integer);
         procedure SetSpeed(speed : integer);
         procedure ChangeSize(size : integer);
         procedure MainLoop();
@@ -49,6 +56,20 @@ implementation
       else _speed := speed;
       if(_onSpeedChange <> nil) then
         _onSpeedChange(_speed);
+    end;
+  
+  procedure StateMachine.SetCellType(type : integer; x : integer; y : integer);
+    begin
+      if (x >= 0) or (x <= _gridSize) then
+        if (y >= 0) or (y <= _gridSize) then
+        begin
+          if(_grid[x][y] <> type) then
+          begin
+            _grid[x][y] = type;
+            if(_onGridChange <> nil) then
+              _onGridChange();
+          end;
+        end;
     end;
   
   procedure StateMachine.ChangeSize(size : integer);
