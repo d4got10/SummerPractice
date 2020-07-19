@@ -84,6 +84,7 @@ procedure InitializeComponent;
         self.radioButton6.TabIndex := 0;
         self.radioButton6.Text := 'Точка начала';
         self.radioButton6.UseVisualStyleBackColor := true;
+        self.radioButton6.MouseClick += radioButton6_MouseClick;
         // 
         // radioButton7
         // 
@@ -93,6 +94,7 @@ procedure InitializeComponent;
         self.radioButton7.TabIndex := 0;
         self.radioButton7.Text := 'Точка конца';
         self.radioButton7.UseVisualStyleBackColor := true;
+        self.radioButton7.MouseClick += radioButton7_MouseClick;
         // 
         // radioButton8
         // 
@@ -102,6 +104,7 @@ procedure InitializeComponent;
         self.radioButton8.TabIndex := 0;
         self.radioButton8.Text := 'Преграда';
         self.radioButton8.UseVisualStyleBackColor := true;
+        self.radioButton8.MouseClick += radioButton8_MouseClick;
         // 
         // groupBox1
         // 
@@ -206,6 +209,7 @@ procedure InitializeComponent;
         self.radioButton9.Text := '1';
         self.radioButton9.TextAlign := System.Drawing.ContentAlignment.MiddleCenter;
         self.radioButton9.UseVisualStyleBackColor := true;
+        self.radioButton9.MouseClick += radioButton9_MouseClick;
         // 
         // radioButton10
         // 
@@ -218,6 +222,7 @@ procedure InitializeComponent;
         self.radioButton10.Text := '2';
         self.radioButton10.TextAlign := System.Drawing.ContentAlignment.MiddleCenter;
         self.radioButton10.UseVisualStyleBackColor := true;
+        self.radioButton10.MouseClick += radioButton10_MouseClick;
         // 
         // radioButton11
         // 
@@ -230,6 +235,7 @@ procedure InitializeComponent;
         self.radioButton11.Text := '3';
         self.radioButton11.TextAlign := System.Drawing.ContentAlignment.MiddleCenter;
         self.radioButton11.UseVisualStyleBackColor := true;
+        self.radioButton11.MouseClick += radioButton11_MouseClick;
         // 
         // groupBox3
         // 
@@ -282,6 +288,8 @@ procedure InitializeComponent;
         // 
         // timer1
         // 
+        self.timer1.Enabled := true;
+        self.timer1.Interval := 1;
         self.timer1.Tick += timer1_Tick;
         // 
         // Form1

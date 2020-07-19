@@ -2,9 +2,11 @@
 
 interface
 
-uses GraphWPF;
+uses GraphWPF, StateMachineUnit;
+
 var
   c: Color;
+  machine: StateMachine;
 
 implementation
 
@@ -16,6 +18,7 @@ begin
 end;
 
 begin
+  machine := new StateMachine(20);
   Window.SetSize(700,700);
   Window.IsFixedSize := true;
   Window.CenterOnScreen;

@@ -2,7 +2,7 @@
 
 interface
 
-uses System, System.Drawing, System.Windows.Forms, Unit2, GraphWPF;
+uses System, System.Drawing, System.Windows.Forms, Unit2, GraphWPF, StateMachineUnit;
 
 type
   Form1 = class(Form)
@@ -11,6 +11,13 @@ type
     procedure button2_Click(sender: Object; e: EventArgs);
     procedure button4_Click(sender: Object; e: EventArgs);
     procedure Form1_Deactivate(sender: Object; e: EventArgs);
+    procedure radioButton6_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure radioButton7_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure radioButton8_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure radioButton9_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure radioButton10_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure radioButton11_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure timer1_Tick(sender: Object; e: EventArgs);
   {$region FormDesigner}
   private
     {$resource Unit1.Form1.resources}
@@ -37,6 +44,8 @@ type
     label2: &Label;
     label3: &Label;
     label4: &Label;
+    timer1: Timer;
+    components: System.ComponentModel.IContainer;
     radioButton1: RadioButton;
     {$include Unit1.Form1.inc}
   {$endregion FormDesigner}
@@ -78,5 +87,41 @@ begin
   if radiobutton7.Checked = true then c := RGB(255,0,0);
   if radiobutton8.Checked = true then c := RGB(0,0,0);
 end;
+
+procedure Form1.radioButton6_MouseClick(sender: Object; e: MouseEventArgs);
+begin
+  
+end;
+
+procedure Form1.radioButton7_MouseClick(sender: Object; e: MouseEventArgs);
+begin
+  
+end;
+
+procedure Form1.radioButton8_MouseClick(sender: Object; e: MouseEventArgs);
+begin
+  
+end;
+
+procedure Form1.radioButton9_MouseClick(sender: Object; e: MouseEventArgs);
+begin
+  machine.SetSpeed(1);
+end;
+
+procedure Form1.radioButton10_MouseClick(sender: Object; e: MouseEventArgs);
+begin
+  machine.SetSpeed(2);
+end;
+
+procedure Form1.radioButton11_MouseClick(sender: Object; e: MouseEventArgs);
+begin
+  machine.SetSpeed(3);
+end;
+
+procedure Form1.timer1_Tick(sender: Object; e: EventArgs);
+begin
+  machine.MainLoop();
+end;
+
 
 end.

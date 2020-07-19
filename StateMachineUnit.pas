@@ -26,7 +26,7 @@ interface
         begin
           _gridSize := gridSize;
           _grid := new intArray[_gridSize];
-          for var i := 1 to _gridSize do
+          for var i := 0 to _gridSize - 1 do
             _grid[i] := new integer[_gridSize];
         end;
         
