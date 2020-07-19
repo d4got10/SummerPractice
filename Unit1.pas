@@ -10,7 +10,6 @@ type
     procedure button1_Click(sender: Object; e: EventArgs);
     procedure button2_Click(sender: Object; e: EventArgs);
     procedure button4_Click(sender: Object; e: EventArgs);
-    procedure Form1_Deactivate(sender: Object; e: EventArgs);
     procedure radioButton6_MouseClick(sender: Object; e: MouseEventArgs);
     procedure radioButton7_MouseClick(sender: Object; e: MouseEventArgs);
     procedure radioButton8_MouseClick(sender: Object; e: MouseEventArgs);
@@ -18,6 +17,7 @@ type
     procedure radioButton10_MouseClick(sender: Object; e: MouseEventArgs);
     procedure radioButton11_MouseClick(sender: Object; e: MouseEventArgs);
     procedure timer1_Tick(sender: Object; e: EventArgs);
+    procedure radioButton12_MouseClick(sender: Object; e: MouseEventArgs);
   {$region FormDesigner}
   private
     {$resource Unit1.Form1.resources}
@@ -46,6 +46,7 @@ type
     label4: &Label;
     timer1: Timer;
     components: System.ComponentModel.IContainer;
+    radioButton12: RadioButton;
     radioButton1: RadioButton;
     {$include Unit1.Form1.inc}
   {$endregion FormDesigner}
@@ -77,30 +78,22 @@ end;
 
 procedure Form1.button4_Click(sender: Object; e: EventArgs);
 begin
-  Window.Clear;
-  SetMathematicCoords(0, 20, 0, true);
-end;
-
-procedure Form1.Form1_Deactivate(sender: Object; e: EventArgs);
-begin
-  if radiobutton6.Checked = true then c := RGB(0,255,0);
-  if radiobutton7.Checked = true then c := RGB(255,0,0);
-  if radiobutton8.Checked = true then c := RGB(0,0,0);
+  CreateWindow;
 end;
 
 procedure Form1.radioButton6_MouseClick(sender: Object; e: MouseEventArgs);
 begin
-  
+  celltype := 5;
 end;
 
 procedure Form1.radioButton7_MouseClick(sender: Object; e: MouseEventArgs);
 begin
-  
+  celltype := 6;
 end;
 
 procedure Form1.radioButton8_MouseClick(sender: Object; e: MouseEventArgs);
 begin
-  
+  celltype := 1;
 end;
 
 procedure Form1.radioButton9_MouseClick(sender: Object; e: MouseEventArgs);
@@ -121,6 +114,11 @@ end;
 procedure Form1.timer1_Tick(sender: Object; e: EventArgs);
 begin
   machine.MainLoop();
+end;
+
+procedure Form1.radioButton12_MouseClick(sender: Object; e: MouseEventArgs);
+begin
+  celltype := 0;
 end;
 
 

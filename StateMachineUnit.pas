@@ -32,7 +32,7 @@ interface
         end;
         
         //Поля
-        property Grid : Grid read _grid;
+        property mGrid : Grid read _grid;
         
         //События
         property OnGridChange : Action read _onGridChange write _onGridChange;
@@ -41,7 +41,7 @@ interface
         property OnSpeedChange : ActionInt read _onSpeedChange write _onSpeedChange;
         
         //Методы
-        procedure SetCellType(type : integer; x : integer; y : integer);
+        procedure SetCellType(celltype : integer; x : integer; y : integer);
         procedure SetSpeed(speed : integer);
         procedure ChangeSize(size : integer);
         procedure MainLoop();
@@ -58,14 +58,14 @@ implementation
         _onSpeedChange(_speed);
     end;
   
-  procedure StateMachine.SetCellType(type : integer; x : integer; y : integer);
+  procedure StateMachine.SetCellType(celltype : integer; x : integer; y : integer);
     begin
       if (x >= 0) or (x <= _gridSize) then
         if (y >= 0) or (y <= _gridSize) then
         begin
-          if(_grid[x][y] <> type) then
+          if(_grid[x][y] <> celltype) then
           begin
-            _grid[x][y] = type;
+            _grid[x][y] := celltype;
             if(_onGridChange <> nil) then
               _onGridChange();
           end;
