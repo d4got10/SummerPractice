@@ -67,8 +67,16 @@ end;
 procedure Form1.button1_Click(sender: Object; e: EventArgs);
 begin
   if button1.Text = 'Пауза' 
-    then button1.Text := 'Продолжить'
-    else button1.Text := 'Пауза';
+    then 
+      begin
+        machine.IsPlaying := false;
+        button1.Text := 'Продолжить';
+      end
+    else 
+     begin
+       machine.IsPlaying := true;
+       button1.Text := 'Пауза';
+     end;
 end;
 
 procedure Form1.button2_Click(sender: Object; e: EventArgs);
@@ -78,7 +86,8 @@ end;
 
 procedure Form1.button4_Click(sender: Object; e: EventArgs);
 begin
-  CreateWindow;
+  machine.ClearGrid();
+  //CreateWindow;
 end;
 
 procedure Form1.radioButton6_MouseClick(sender: Object; e: MouseEventArgs);

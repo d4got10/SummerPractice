@@ -2,6 +2,10 @@
 
 interface
   type 
+    Point = record
+      x : integer;
+      y : integer;
+    end;
     intArray = array of integer;
     Grid = array of array of integer;
     
@@ -19,20 +23,23 @@ interface
         _onComplete : Action;
         _onStart : Action;
         _onSpeedChange : ActionInt;
+        _start : Point;
+        _end : Point;
         
-        procedure Act();
+        procedure CreateGrid();
       public
         //Конструктор
         constructor(gridSize : integer);
         begin
+          _tick := 0;
+          _speed := 2;
           _gridSize := gridSize;
-          _grid := new intArray[_gridSize];
-          for var i := 0 to _gridSize - 1 do
-            _grid[i] := new integer[_gridSize];
+          CreateGrid();
         end;
         
         //Поля
-        property mGrid : Grid read _grid;
+        property GridData : Grid read _grid;
+        property IsPlaying : boolean read _isPlaying write _isPlaying;
         
         //События
         property OnGridChange : Action read _onGridChange write _onGridChange;
@@ -45,6 +52,8 @@ interface
         procedure SetSpeed(speed : integer);
         procedure ChangeSize(size : integer);
         procedure MainLoop();
+        procedure ClearGrid();
+        procedure Act();
          
     end;
   
@@ -63,14 +72,44 @@ implementation
       if (x >= 0) or (x <= _gridSize) then
         if (y >= 0) or (y <= _gridSize) then
         begin
-          if(_grid[x][y] <> celltype) then
+          if(_grid[x][y] <> celltype) and (_grid[x][y] <> 5) and (_grid[x][y] <> 6) then
           begin
             _grid[x][y] := celltype;
+            if(celltype = 5) then 
+              begin 
+                _grid[_start.x][_start.y] := 0;
+                _start.x := x;
+                _start.y := y;
+              end;
+            if(celltype = 6) then
+              begin 
+                _grid[_end.x][_end.y] := 0;
+                _end.x := x;
+                _end.y := y;
+              end;
             if(_onGridChange <> nil) then
               _onGridChange();
           end;
         end;
     end;
+  
+  procedure StateMachine.CreateGrid();
+  begin
+      _grid := new intArray[_gridSize];
+      for var i := 0 to _gridSize-1 do
+        _grid[i] := new integer[_gridSize];
+      
+      _start.x := 0;
+      _start.y := 0;
+      _grid[0][0] := 5;
+      
+      _end.x := 0;
+      _end.y := 1;
+      _grid[0][1] := 6;
+      
+      if(_onGridChange <> nil) then
+        _onGridChange();
+  end;
   
   procedure StateMachine.ChangeSize(size : integer);
     begin
@@ -78,13 +117,7 @@ implementation
       else if(size > 100) then _gridSize := 100
       else _gridSize := size;
       
-      _gridSize := size;
-          _grid := new intArray[_gridSize];
-          for var i := 1 to _gridSize do
-            _grid[i] := new integer[_gridSize];
-      
-      if(_onGridChange <> nil) then
-        _onGridChange();
+      CreateGrid();
     end;
     
   procedure StateMachine.MainLoop();
@@ -103,6 +136,11 @@ implementation
             _onGridChange();
         end;
       end;
+    end;
+  
+  procedure StateMachine.ClearGrid();
+    begin
+      CreateGrid();
     end;
     
   procedure StateMachine.Act();

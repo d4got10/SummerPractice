@@ -53,7 +53,7 @@ begin
   SetMathematicCoords(0, 20, 0, true);
   for var x:=0 to n-1 do begin
     for var y:=0 to n-1 do begin
-      case machine.mGrid[x,y] of
+      case machine.GridData[x,y] of
         0: Brush.Color := RGB(255,255,255);
         1: Brush.Color := RGB(0,0,0);
         5: Brush.Color := RGB(0,255,0);
