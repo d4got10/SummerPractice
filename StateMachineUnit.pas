@@ -103,9 +103,9 @@ implementation
       _start.y := 0;
       _grid[0][0] := 5;
       
-      _end.x := 0;
-      _end.y := 1;
-      _grid[0][1] := 6;
+      _end.x := 1;
+      _end.y := 0;
+      _grid[1][0] := 6;
       
       if(_onGridChange <> nil) then
         _onGridChange();

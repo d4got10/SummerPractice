@@ -5,11 +5,11 @@ interface
 uses System, System.Drawing, System.Windows.Forms, Unit2, GraphWPF, StateMachineUnit;
 
 type
-  Form1 = class(Form)
+  Form_Settings = class(Form)
     procedure button6_Click(sender: Object; e: EventArgs);
     procedure button1_Click(sender: Object; e: EventArgs);
     procedure button2_Click(sender: Object; e: EventArgs);
-    procedure button4_Click(sender: Object; e: EventArgs);
+    procedure b_ClearGrid_Click(sender: Object; e: EventArgs);
     procedure radioButton6_MouseClick(sender: Object; e: MouseEventArgs);
     procedure radioButton7_MouseClick(sender: Object; e: MouseEventArgs);
     procedure radioButton8_MouseClick(sender: Object; e: MouseEventArgs);
@@ -18,37 +18,37 @@ type
     procedure radioButton11_MouseClick(sender: Object; e: MouseEventArgs);
     procedure timer1_Tick(sender: Object; e: EventArgs);
     procedure radioButton12_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure Form1_Shown(sender: Object; e: EventArgs);
   {$region FormDesigner}
   private
-    {$resource Unit1.Form1.resources}
-    radioButton2: RadioButton;
-    radioButton3: RadioButton;
-    radioButton4: RadioButton;
-    radioButton5: RadioButton;
-    radioButton6: RadioButton;
-    radioButton7: RadioButton;
-    radioButton8: RadioButton;
-    groupBox1: GroupBox;
-    groupBox2: GroupBox;
-    button1: Button;
-    button2: Button;
-    button3: Button;
-    button4: Button;
-    button5: Button;
-    button6: Button;
-    radioButton9: RadioButton;
-    radioButton10: RadioButton;
-    radioButton11: RadioButton;
-    groupBox3: GroupBox;
-    label1: &Label;
-    label2: &Label;
-    label3: &Label;
-    label4: &Label;
-    timer1: Timer;
+    {$resource Unit1.Form_Settings.resources}
+    rb_algAStar: RadioButton;
+    rb_algWidthSearch: RadioButton;
+    rb_algDeepSearch: RadioButton;
+    rb_cell5: RadioButton;
+    rb_cell6: RadioButton;
+    rb_cell1: RadioButton;
+    groupBox_Algorithms: GroupBox;
+    groupBox_CellTypes: GroupBox;
+    b_Act_Pause: Button;
+    b_Stop: Button;
+    b_DoStep: Button;
+    b_ClearGrid: Button;
+    b_DeleteObstacles: Button;
+    b_Exit: Button;
+    rb_speed1: RadioButton;
+    rb_speed2: RadioButton;
+    rb_speed3: RadioButton;
+    groupBox_animSpeed: GroupBox;
+    label_Path: &Label;
+    label_CellsResearched: &Label;
+    label_PathInfo: &Label;
+    label_CellsResearchedInfo: &Label;
+    timer: Timer;
     components: System.ComponentModel.IContainer;
-    radioButton12: RadioButton;
-    radioButton1: RadioButton;
-    {$include Unit1.Form1.inc}
+    rb_cell0: RadioButton;
+    rb_algDejkstra: RadioButton;
+    {$include Unit1.Form_Settings.inc}
   {$endregion FormDesigner}
   public
     constructor;
@@ -59,76 +59,80 @@ type
 
 implementation
 
-procedure Form1.button6_Click(sender: Object; e: EventArgs);
+procedure Form_Settings.button6_Click(sender: Object; e: EventArgs);
 begin
   Window.Close;
 end;
 
-procedure Form1.button1_Click(sender: Object; e: EventArgs);
+procedure Form_Settings.button1_Click(sender: Object; e: EventArgs);
 begin
-  if button1.Text = 'Пауза' 
+  if b_Act_Pause.Text = 'Пауза' 
     then 
       begin
         machine.IsPlaying := false;
-        button1.Text := 'Продолжить';
+        b_Act_Pause.Text := 'Продолжить';
       end
     else 
      begin
        machine.IsPlaying := true;
-       button1.Text := 'Пауза';
+       b_Act_Pause.Text := 'Пауза';
      end;
 end;
 
-procedure Form1.button2_Click(sender: Object; e: EventArgs);
+procedure Form_Settings.button2_Click(sender: Object; e: EventArgs);
 begin
-  button1.Text := 'Выполнить';
+  b_Act_Pause.Text := 'Выполнить';
 end;
 
-procedure Form1.button4_Click(sender: Object; e: EventArgs);
+procedure Form_Settings.b_ClearGrid_Click(sender: Object; e: EventArgs);
 begin
   machine.ClearGrid();
-  //CreateWindow;
 end;
 
-procedure Form1.radioButton6_MouseClick(sender: Object; e: MouseEventArgs);
+procedure Form_Settings.radioButton6_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   celltype := 5;
 end;
 
-procedure Form1.radioButton7_MouseClick(sender: Object; e: MouseEventArgs);
+procedure Form_Settings.radioButton7_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   celltype := 6;
 end;
 
-procedure Form1.radioButton8_MouseClick(sender: Object; e: MouseEventArgs);
+procedure Form_Settings.radioButton8_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   celltype := 1;
 end;
 
-procedure Form1.radioButton9_MouseClick(sender: Object; e: MouseEventArgs);
+procedure Form_Settings.radioButton9_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   machine.SetSpeed(1);
 end;
 
-procedure Form1.radioButton10_MouseClick(sender: Object; e: MouseEventArgs);
+procedure Form_Settings.radioButton10_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   machine.SetSpeed(2);
 end;
 
-procedure Form1.radioButton11_MouseClick(sender: Object; e: MouseEventArgs);
+procedure Form_Settings.radioButton11_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   machine.SetSpeed(3);
 end;
 
-procedure Form1.timer1_Tick(sender: Object; e: EventArgs);
+procedure Form_Settings.timer1_Tick(sender: Object; e: EventArgs);
 begin
   machine.MainLoop();
 end;
 
-procedure Form1.radioButton12_MouseClick(sender: Object; e: MouseEventArgs);
+procedure Form_Settings.radioButton12_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   celltype := 0;
 end;
 
+procedure Form_Settings.Form1_Shown(sender: Object; e: EventArgs);
+begin
+  celltype := 5;
+  machine.SetSpeed(2);
+end;
 
 end.

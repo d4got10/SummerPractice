@@ -6,11 +6,12 @@ procedure InitializeComponent;
         self.radioButton3 := new System.Windows.Forms.RadioButton();
         self.radioButton4 := new System.Windows.Forms.RadioButton();
         self.radioButton5 := new System.Windows.Forms.RadioButton();
-        self.radioButton6 := new System.Windows.Forms.RadioButton();
+        self.ff := new System.Windows.Forms.RadioButton();
         self.radioButton7 := new System.Windows.Forms.RadioButton();
         self.radioButton8 := new System.Windows.Forms.RadioButton();
         self.groupBox1 := new System.Windows.Forms.GroupBox();
         self.groupBox2 := new System.Windows.Forms.GroupBox();
+        self.radioButton12 := new System.Windows.Forms.RadioButton();
         self.button1 := new System.Windows.Forms.Button();
         self.button2 := new System.Windows.Forms.Button();
         self.button3 := new System.Windows.Forms.Button();
@@ -26,7 +27,6 @@ procedure InitializeComponent;
         self.label3 := new System.Windows.Forms.Label();
         self.label4 := new System.Windows.Forms.Label();
         self.timer1 := new System.Windows.Forms.Timer(self.components);
-        self.radioButton12 := new System.Windows.Forms.RadioButton();
         self.groupBox1.SuspendLayout();
         self.groupBox2.SuspendLayout();
         self.groupBox3.SuspendLayout();
@@ -77,17 +77,17 @@ procedure InitializeComponent;
         self.radioButton5.Text := 'radioButton1';
         self.radioButton5.UseVisualStyleBackColor := true;
         // 
-        // radioButton6
+        // ff
         // 
-        self.radioButton6.Checked := true;
-        self.radioButton6.Location := new System.Drawing.Point(21, 28);
-        self.radioButton6.Name := 'radioButton6';
-        self.radioButton6.Size := new System.Drawing.Size(142, 24);
-        self.radioButton6.TabIndex := 0;
-        self.radioButton6.TabStop := true;
-        self.radioButton6.Text := 'Точка начала';
-        self.radioButton6.UseVisualStyleBackColor := true;
-        self.radioButton6.MouseClick += radioButton6_MouseClick;
+        self.ff.Checked := true;
+        self.ff.Location := new System.Drawing.Point(21, 28);
+        self.ff.Name := 'ff';
+        self.ff.Size := new System.Drawing.Size(142, 24);
+        self.ff.TabIndex := 0;
+        self.ff.TabStop := true;
+        self.ff.Text := 'Точка начала';
+        self.ff.UseVisualStyleBackColor := true;
+        self.ff.MouseClick += radioButton6_MouseClick;
         // 
         // radioButton7
         // 
@@ -127,7 +127,7 @@ procedure InitializeComponent;
         // groupBox2
         // 
         self.groupBox2.Controls.Add(self.radioButton7);
-        self.groupBox2.Controls.Add(self.radioButton6);
+        self.groupBox2.Controls.Add(self.ff);
         self.groupBox2.Controls.Add(self.radioButton12);
         self.groupBox2.Controls.Add(self.radioButton8);
         self.groupBox2.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
@@ -137,6 +137,16 @@ procedure InitializeComponent;
         self.groupBox2.TabIndex := 1;
         self.groupBox2.TabStop := false;
         self.groupBox2.Text := 'Ячейки';
+        // 
+        // radioButton12
+        // 
+        self.radioButton12.Location := new System.Drawing.Point(21, 118);
+        self.radioButton12.Name := 'radioButton12';
+        self.radioButton12.Size := new System.Drawing.Size(142, 24);
+        self.radioButton12.TabIndex := 0;
+        self.radioButton12.Text := 'Ластик';
+        self.radioButton12.UseVisualStyleBackColor := true;
+        self.radioButton12.MouseClick += radioButton12_MouseClick;
         // 
         // button1
         // 
@@ -295,16 +305,6 @@ procedure InitializeComponent;
         self.timer1.Interval := 1;
         self.timer1.Tick += timer1_Tick;
         // 
-        // radioButton12
-        // 
-        self.radioButton12.Location := new System.Drawing.Point(21, 118);
-        self.radioButton12.Name := 'radioButton12';
-        self.radioButton12.Size := new System.Drawing.Size(142, 24);
-        self.radioButton12.TabIndex := 0;
-        self.radioButton12.Text := 'Ластик';
-        self.radioButton12.UseVisualStyleBackColor := true;
-        self.radioButton12.MouseClick += radioButton12_MouseClick;
-        // 
         // Form1
         // 
         self.ClientSize := new System.Drawing.Size(282, 813);
@@ -327,6 +327,7 @@ procedure InitializeComponent;
         self.Name := 'Form1';
         self.StartPosition := System.Windows.Forms.FormStartPosition.Manual;
         self.Text := 'Параметры';
+        self.Shown += Form1_Shown;
         self.groupBox1.ResumeLayout(false);
         self.groupBox2.ResumeLayout(false);
         self.groupBox3.ResumeLayout(false);
