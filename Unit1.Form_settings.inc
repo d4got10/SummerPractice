@@ -178,7 +178,6 @@
         self.b_ClearGrid.TabIndex := 4;
         self.b_ClearGrid.Text := 'Очистить поле';
         self.b_ClearGrid.UseVisualStyleBackColor := true;
-        self.b_ClearGrid.Click += b_ClearGrid_Click;
         // 
         // b_DeleteObstacles
         // 
