@@ -106,15 +106,9 @@ implementation
       _start.y := 5;
       _grid[5][5] := 5;
       
-<<<<<<< HEAD
-      _end.x := 1;
-      _end.y := 0;
-      _grid[1][0] := 6;
-=======
       _end.x := 15;
       _end.y := 15;
       _grid[15][15] := 6;
->>>>>>> 52262ed5857852badb230d90947c8f3d9df315cd
       
       if(_onGridChange <> nil) then
         _onGridChange();

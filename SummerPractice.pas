@@ -1,4 +1,4 @@
-﻿uses Unit1, Unit2;
+﻿uses WindowsFormUnit, GraphWindowUnit;
 
 begin
   System.Windows.Forms.Application.EnableVisualStyles();
