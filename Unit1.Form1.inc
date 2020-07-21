@@ -11,6 +11,7 @@ procedure InitializeComponent;
         self.radioButton8 := new System.Windows.Forms.RadioButton();
         self.groupBox1 := new System.Windows.Forms.GroupBox();
         self.groupBox2 := new System.Windows.Forms.GroupBox();
+        self.radioButton12 := new System.Windows.Forms.RadioButton();
         self.button1 := new System.Windows.Forms.Button();
         self.button2 := new System.Windows.Forms.Button();
         self.button3 := new System.Windows.Forms.Button();
@@ -26,7 +27,6 @@ procedure InitializeComponent;
         self.label3 := new System.Windows.Forms.Label();
         self.label4 := new System.Windows.Forms.Label();
         self.timer1 := new System.Windows.Forms.Timer(self.components);
-        self.radioButton12 := new System.Windows.Forms.RadioButton();
         self.groupBox1.SuspendLayout();
         self.groupBox2.SuspendLayout();
         self.groupBox3.SuspendLayout();
@@ -138,6 +138,16 @@ procedure InitializeComponent;
         self.groupBox2.TabStop := false;
         self.groupBox2.Text := 'Ячейки';
         // 
+        // radioButton12
+        // 
+        self.radioButton12.Location := new System.Drawing.Point(21, 118);
+        self.radioButton12.Name := 'radioButton12';
+        self.radioButton12.Size := new System.Drawing.Size(142, 24);
+        self.radioButton12.TabIndex := 0;
+        self.radioButton12.Text := 'Ластик';
+        self.radioButton12.UseVisualStyleBackColor := true;
+        self.radioButton12.MouseClick += radioButton12_MouseClick;
+        // 
         // button1
         // 
         self.button1.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
@@ -169,6 +179,7 @@ procedure InitializeComponent;
         self.button3.TabIndex := 4;
         self.button3.Text := 'Продвинуться на шаг';
         self.button3.UseVisualStyleBackColor := true;
+        self.button3.Click += button3_Click;
         // 
         // button4
         // 
@@ -294,16 +305,6 @@ procedure InitializeComponent;
         self.timer1.Enabled := true;
         self.timer1.Interval := 1;
         self.timer1.Tick += timer1_Tick;
-        // 
-        // radioButton12
-        // 
-        self.radioButton12.Location := new System.Drawing.Point(21, 118);
-        self.radioButton12.Name := 'radioButton12';
-        self.radioButton12.Size := new System.Drawing.Size(142, 24);
-        self.radioButton12.TabIndex := 0;
-        self.radioButton12.Text := 'Ластик';
-        self.radioButton12.UseVisualStyleBackColor := true;
-        self.radioButton12.MouseClick += radioButton12_MouseClick;
         // 
         // Form1
         // 

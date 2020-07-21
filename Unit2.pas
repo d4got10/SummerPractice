@@ -56,6 +56,9 @@ begin
       case machine.GridData[x,y] of
         0: Brush.Color := RGB(255,255,255);
         1: Brush.Color := RGB(0,0,0);
+        2: Brush.Color := RGB(255,255,0);
+        3: Brush.Color := RGB(255,127,127);
+        4: Brush.Color := RGB(20,127,180);
         5: Brush.Color := RGB(0,255,0);
         6: Brush.Color := RGB(255,0,0);
         //дописать

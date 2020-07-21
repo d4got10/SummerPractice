@@ -18,6 +18,7 @@ type
     procedure radioButton11_MouseClick(sender: Object; e: MouseEventArgs);
     procedure timer1_Tick(sender: Object; e: EventArgs);
     procedure radioButton12_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure button3_Click(sender: Object; e: EventArgs);
   {$region FormDesigner}
   private
     {$resource Unit1.Form1.resources}
@@ -128,6 +129,11 @@ end;
 procedure Form1.radioButton12_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   celltype := 0;
+end;
+
+procedure Form1.button3_Click(sender: Object; e: EventArgs);
+begin
+  machine.Act();
 end;
 
 
