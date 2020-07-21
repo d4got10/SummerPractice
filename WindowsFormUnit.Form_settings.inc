@@ -25,9 +25,11 @@ procedure InitializeComponent;
         self.label_PathInfo := new System.Windows.Forms.Label();
         self.label_CellsResearchedInfo := new System.Windows.Forms.Label();
         self.timer := new System.Windows.Forms.Timer(self.components);
+        self.groupBox_Result := new System.Windows.Forms.GroupBox();
         self.groupBox_Algorithms.SuspendLayout();
         self.groupBox_CellTypes.SuspendLayout();
         self.groupBox_animSpeed.SuspendLayout();
+        self.groupBox_Result.SuspendLayout();
         self.SuspendLayout();
         // 
         // rb_algDejkstra
@@ -105,7 +107,7 @@ procedure InitializeComponent;
         self.groupBox_Algorithms.Controls.Add(self.rb_algWidthSearch);
         self.groupBox_Algorithms.Controls.Add(self.rb_algDeepSearch);
         self.groupBox_Algorithms.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.groupBox_Algorithms.Location := new System.Drawing.Point(37, 407);
+        self.groupBox_Algorithms.Location := new System.Drawing.Point(37, 402);
         self.groupBox_Algorithms.Name := 'groupBox_Algorithms';
         self.groupBox_Algorithms.Size := new System.Drawing.Size(209, 153);
         self.groupBox_Algorithms.TabIndex := 2;
@@ -119,7 +121,7 @@ procedure InitializeComponent;
         self.groupBox_CellTypes.Controls.Add(self.rb_cell0);
         self.groupBox_CellTypes.Controls.Add(self.rb_cell1);
         self.groupBox_CellTypes.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.groupBox_CellTypes.Location := new System.Drawing.Point(37, 33);
+        self.groupBox_CellTypes.Location := new System.Drawing.Point(37, 28);
         self.groupBox_CellTypes.Name := 'groupBox_CellTypes';
         self.groupBox_CellTypes.Size := new System.Drawing.Size(209, 160);
         self.groupBox_CellTypes.TabIndex := 1;
@@ -139,11 +141,11 @@ procedure InitializeComponent;
         // b_Act_Pause
         // 
         self.b_Act_Pause.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.b_Act_Pause.Location := new System.Drawing.Point(37, 273);
+        self.b_Act_Pause.Location := new System.Drawing.Point(37, 268);
         self.b_Act_Pause.Name := 'b_Act_Pause';
         self.b_Act_Pause.Size := new System.Drawing.Size(209, 33);
         self.b_Act_Pause.TabIndex := 4;
-        self.b_Act_Pause.Text := 'Выполнить';
+        self.b_Act_Pause.Text := 'Запустить';
         self.b_Act_Pause.UseVisualStyleBackColor := true;
         self.b_Act_Pause.Click += b_Act_Pause_Click;
         // 
@@ -151,30 +153,29 @@ procedure InitializeComponent;
         // 
         self.b_Stop.Enabled := false;
         self.b_Stop.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.b_Stop.Location := new System.Drawing.Point(37, 312);
+        self.b_Stop.Location := new System.Drawing.Point(37, 307);
         self.b_Stop.Name := 'b_Stop';
         self.b_Stop.Size := new System.Drawing.Size(209, 33);
         self.b_Stop.TabIndex := 4;
-        self.b_Stop.Text := 'Остановить';
+        self.b_Stop.Text := 'Прекратить';
         self.b_Stop.UseVisualStyleBackColor := true;
         self.b_Stop.Click += b_Stop_Click;
         // 
         // b_DoStep
         // 
-        self.b_DoStep.Enabled := false;
         self.b_DoStep.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.b_DoStep.Location := new System.Drawing.Point(37, 351);
+        self.b_DoStep.Location := new System.Drawing.Point(37, 346);
         self.b_DoStep.Name := 'b_DoStep';
         self.b_DoStep.Size := new System.Drawing.Size(209, 37);
         self.b_DoStep.TabIndex := 4;
-        self.b_DoStep.Text := 'Продвинуться на шаг';
+        self.b_DoStep.Text := 'Выполнить шаг';
         self.b_DoStep.UseVisualStyleBackColor := true;
         self.b_DoStep.Click += b_DoStep_Click;
         // 
         // b_ClearGrid
         // 
         self.b_ClearGrid.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.b_ClearGrid.Location := new System.Drawing.Point(37, 208);
+        self.b_ClearGrid.Location := new System.Drawing.Point(37, 203);
         self.b_ClearGrid.Name := 'b_ClearGrid';
         self.b_ClearGrid.Size := new System.Drawing.Size(209, 37);
         self.b_ClearGrid.TabIndex := 4;
@@ -185,11 +186,11 @@ procedure InitializeComponent;
         // b_Exit
         // 
         self.b_Exit.Font := new System.Drawing.Font('Microsoft Sans Serif', 9, System.Drawing.FontStyle.Bold);
-        self.b_Exit.Location := new System.Drawing.Point(37, 742);
+        self.b_Exit.Location := new System.Drawing.Point(37, 747);
         self.b_Exit.Name := 'b_Exit';
         self.b_Exit.Size := new System.Drawing.Size(209, 37);
         self.b_Exit.TabIndex := 4;
-        self.b_Exit.Text := 'Выход';
+        self.b_Exit.Text := 'Выйти';
         self.b_Exit.UseVisualStyleBackColor := true;
         self.b_Exit.Click += b_Exit_Click;
         // 
@@ -237,7 +238,7 @@ procedure InitializeComponent;
         self.groupBox_animSpeed.Controls.Add(self.rb_speed2);
         self.groupBox_animSpeed.Controls.Add(self.rb_speed3);
         self.groupBox_animSpeed.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.groupBox_animSpeed.Location := new System.Drawing.Point(37, 575);
+        self.groupBox_animSpeed.Location := new System.Drawing.Point(37, 570);
         self.groupBox_animSpeed.Name := 'groupBox_animSpeed';
         self.groupBox_animSpeed.Size := new System.Drawing.Size(209, 73);
         self.groupBox_animSpeed.TabIndex := 6;
@@ -246,36 +247,36 @@ procedure InitializeComponent;
         // 
         // label_Path
         // 
-        self.label_Path.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.label_Path.Location := new System.Drawing.Point(37, 669);
+        self.label_Path.Font := new System.Drawing.Font('Microsoft Sans Serif', 9, System.Drawing.FontStyle.Bold);
+        self.label_Path.Location := new System.Drawing.Point(6, 12);
         self.label_Path.Name := 'label_Path';
-        self.label_Path.Size := new System.Drawing.Size(163, 23);
+        self.label_Path.Size := new System.Drawing.Size(117, 23);
         self.label_Path.TabIndex := 7;
         self.label_Path.Text := 'Длина пути:';
         self.label_Path.TextAlign := System.Drawing.ContentAlignment.TopRight;
         // 
         // label_CellsResearched
         // 
-        self.label_CellsResearched.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.label_CellsResearched.Location := new System.Drawing.Point(37, 698);
+        self.label_CellsResearched.Font := new System.Drawing.Font('Microsoft Sans Serif', 9, System.Drawing.FontStyle.Bold);
+        self.label_CellsResearched.Location := new System.Drawing.Point(6, 35);
         self.label_CellsResearched.Name := 'label_CellsResearched';
-        self.label_CellsResearched.Size := new System.Drawing.Size(163, 23);
+        self.label_CellsResearched.Size := new System.Drawing.Size(117, 41);
         self.label_CellsResearched.TabIndex := 7;
-        self.label_CellsResearched.Text := 'Исследовано клеток:';
+        self.label_CellsResearched.Text := 'Исследовано'#13#10'клеток:';
         self.label_CellsResearched.TextAlign := System.Drawing.ContentAlignment.TopRight;
         // 
         // label_PathInfo
         // 
-        self.label_PathInfo.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.label_PathInfo.Location := new System.Drawing.Point(197, 669);
+        self.label_PathInfo.Font := new System.Drawing.Font('Microsoft Sans Serif', 9, System.Drawing.FontStyle.Bold);
+        self.label_PathInfo.Location := new System.Drawing.Point(121, 12);
         self.label_PathInfo.Name := 'label_PathInfo';
         self.label_PathInfo.Size := new System.Drawing.Size(82, 23);
         self.label_PathInfo.TabIndex := 7;
         // 
         // label_CellsResearchedInfo
         // 
-        self.label_CellsResearchedInfo.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.label_CellsResearchedInfo.Location := new System.Drawing.Point(197, 698);
+        self.label_CellsResearchedInfo.Font := new System.Drawing.Font('Microsoft Sans Serif', 9, System.Drawing.FontStyle.Bold);
+        self.label_CellsResearchedInfo.Location := new System.Drawing.Point(121, 44);
         self.label_CellsResearchedInfo.Name := 'label_CellsResearchedInfo';
         self.label_CellsResearchedInfo.Size := new System.Drawing.Size(82, 23);
         self.label_CellsResearchedInfo.TabIndex := 7;
@@ -286,13 +287,23 @@ procedure InitializeComponent;
         self.timer.Interval := 1;
         self.timer.Tick += timer_Tick;
         // 
+        // groupBox_Result
+        // 
+        self.groupBox_Result.Controls.Add(self.label_Path);
+        self.groupBox_Result.Controls.Add(self.label_CellsResearchedInfo);
+        self.groupBox_Result.Controls.Add(self.label_CellsResearched);
+        self.groupBox_Result.Controls.Add(self.label_PathInfo);
+        self.groupBox_Result.Location := new System.Drawing.Point(37, 655);
+        self.groupBox_Result.Name := 'groupBox_Result';
+        self.groupBox_Result.Size := new System.Drawing.Size(209, 79);
+        self.groupBox_Result.TabIndex := 8;
+        self.groupBox_Result.TabStop := false;
+        self.groupBox_Result.Visible := false;
+        // 
         // Form_Settings
         // 
         self.ClientSize := new System.Drawing.Size(282, 813);
-        self.Controls.Add(self.label_CellsResearched);
-        self.Controls.Add(self.label_CellsResearchedInfo);
-        self.Controls.Add(self.label_PathInfo);
-        self.Controls.Add(self.label_Path);
+        self.Controls.Add(self.groupBox_Result);
         self.Controls.Add(self.b_ClearGrid);
         self.Controls.Add(self.b_Exit);
         self.Controls.Add(self.b_DoStep);
@@ -311,5 +322,6 @@ procedure InitializeComponent;
         self.groupBox_Algorithms.ResumeLayout(false);
         self.groupBox_CellTypes.ResumeLayout(false);
         self.groupBox_animSpeed.ResumeLayout(false);
+        self.groupBox_Result.ResumeLayout(false);
         self.ResumeLayout(false);
     end;

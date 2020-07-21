@@ -6,6 +6,7 @@ uses System, System.Drawing, System.Windows.Forms, GraphWindowUnit, GraphWPF, St
 
 type
   Form_Settings = class(Form)
+  
     procedure Form_Settings_Shown(sender: Object; e: EventArgs);
     procedure timer_Tick(sender: Object; e: EventArgs);
     
@@ -24,6 +25,7 @@ type
     procedure rb_speed2_MouseClick(sender: Object; e: MouseEventArgs);
     procedure rb_speed3_MouseClick(sender: Object; e: MouseEventArgs);
     
+    procedure rb_algAStar_MouseClick(sender: Object; e: MouseEventArgs);
   {$region FormDesigner}
   private
     {$resource WindowsFormUnit.Form_Settings.resources}
@@ -51,6 +53,7 @@ type
     timer: Timer;
     components: System.ComponentModel.IContainer;
     rb_cell0: RadioButton;
+    groupBox_Result: GroupBox;
     rb_algDejkstra: RadioButton;
     {$include WindowsFormUnit.Form_Settings.inc}
   {$endregion FormDesigner}
@@ -59,11 +62,29 @@ type
     begin
       InitializeComponent;
     end;
+    
+    procedure Activation(switched: boolean);
+    begin
+      if switched = true then b_Act_Pause.Text := 'Запустить';
+      groupBox_CellTypes.Enabled := switched;
+      groupBox_Algorithms.Enabled := switched;
+      b_ClearGrid.Enabled := switched;
+      b_Stop.Enabled := not(switched);
+      b_DoStep.Enabled := switched;
+    end;
+    
+    procedure ShowResult;
+    begin
+      //label_Path.Text := ;
+      //label_CellsResearched.Text := ;
+      groupBox_Result.Visible := true;
+    end;
+    
   end; //Form1 class
 
 implementation
 
-{=====СОБЫТИЙ ФОРМЫ И НЕМНОГОЧИСЛЕННЫХ ЭЛЕМЕНТОВ=====}
+{=====СОБЫТИЯ ФОРМЫ И НЕМНОГОЧИСЛЕННЫХ ЭЛЕМЕНТОВ=====}
 
 procedure Form_Settings.Form_Settings_Shown(sender: Object; e: EventArgs);
 begin
@@ -81,32 +102,39 @@ end;
 procedure Form_Settings.b_ClearGrid_Click(sender: Object; e: EventArgs);
 begin
   machine.ClearGrid();
+  Activation(true);
 end;
 
 procedure Form_Settings.b_Act_Pause_Click(sender: Object; e: EventArgs);
 begin
-  if machine.IsPlaying = true 
+  if machine.IsPlaying = false 
     then begin
-        machine.IsPlaying := false;
-        b_Act_Pause.Text := 'Продолжить';
+        machine.IsPlaying := true;
+        b_Act_Pause.Text := 'Приостановить';
+        Activation(false);
     end
     else begin
-       machine.IsPlaying := true;
-       
-       b_Act_Pause.Text := 'Пауза';
+       machine.IsPlaying := false;
+       b_Act_Pause.Text := 'Продолжить';
+       b_ClearGrid.Enabled := true;
+       b_DoStep.Enabled := true;
     end;
 end;
 
 procedure Form_Settings.b_Stop_Click(sender: Object; e: EventArgs);
 begin
-  b_Act_Pause.Text := 'Выполнить';
   machine.IsPlaying := false;
   machine.ClearGrid();
+  Activation(true);
 end;
 
 procedure Form_Settings.b_DoStep_Click(sender: Object; e: EventArgs);
 begin
   machine.Act();
+  b_Act_Pause.Text := 'Продолжить';
+  Activation(false);
+  b_ClearGrid.Enabled := true;
+  b_DoStep.Enabled := true;
 end;
 
 procedure Form_Settings.b_Exit_Click(sender: Object; e: EventArgs);
@@ -149,6 +177,11 @@ end;
 procedure Form_Settings.rb_speed3_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   machine.SetSpeed(3);
+end;
+
+procedure Form_Settings.rb_algAStar_MouseClick(sender: Object; e: MouseEventArgs);
+begin
+  
 end;
 
 

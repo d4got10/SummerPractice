@@ -36,21 +36,26 @@ begin
   for var x:=0 to n-1 do
     for var y:=0 to n-1 do begin
       case machine.GridData[x,y] of
-        0: Brush.Color := RGB(255,255,255); // пустая
-        1: Brush.Color := RGB(0,0,0);       // преграда
-        2: Brush.Color := RGB(150,150,150); // помеченная
-        3: Brush.Color := RGB(100,200,200); // в очереди
-        4: Brush.Color := RGB(255,255,50);  // путь
-        5: Brush.Color := RGB(50,255,50);   // начало
-        6: Brush.Color := RGB(255,50,50);   // конец
+        0: Brush.Color := Colors.White;   // пустая
+        1: Brush.Color := Colors.Black;   // преграда
+        2: Brush.Color := Colors.Gray;    // помеченная
+        3: Brush.Color := Colors.SkyBlue; // в очереди
+        4: Brush.Color := Colors.Yellow;  // путь
+        5: Brush.Color := Colors.Green;   // начало
+        6: Brush.Color := Colors.Red;     // конец
       end;
       Rectangle(x + 0.04, y + 0.04, w, w); (* рисуем клетку *)
     end;
 end;
 
+procedure Animation;
+begin
+  BeginFrameBasedAnimation(CreateWindow, 30);
+end;
+
 begin
   machine := new StateMachine(20);
-  machine.OnGridChange := CreateWindow;
+  machine.OnGridChange := Animation;
   Pen.Color := RGB(255,255,255);
   CreateWindow;
   OnMouseDown := ColorCell;
