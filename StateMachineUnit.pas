@@ -1,17 +1,9 @@
 ﻿unit StateMachineUnit;
 
 interface
-  type 
-    Point = record
-      x : integer;
-      y : integer;
-    end;
-    intArray = array of integer;
-    Grid = array of array of integer;
-    
-    Action = procedure;
-    ActionInt = procedure(data : integer);
-    
+  uses AlgorithmUnit, AStarUnit;
+
+  type     
     StateMachine = class
       private 
         _tick : integer;
@@ -25,8 +17,11 @@ interface
         _onSpeedChange : ActionInt;
         _start : Point;
         _end : Point;
+        _algorithmNumber : integer;
+        _algorithm : Algorithm;
         
         procedure CreateGrid();
+        procedure OnAlgorithmStep();
       public
         //Конструктор
         constructor(gridSize : integer);
@@ -34,7 +29,8 @@ interface
           _tick := 0;
           _speed := 2;
           _gridSize := gridSize;
-          CreateGrid();
+          CreateGrid();      
+          ChangeAlgorithm(1);
         end;
         
         //Поля
@@ -54,6 +50,7 @@ interface
         procedure MainLoop();
         procedure ClearGrid();
         procedure Act();
+        procedure ChangeAlgorithm(num : integer);
          
     end;
   
@@ -69,6 +66,8 @@ implementation
   
   procedure StateMachine.SetCellType(celltype : integer; x : integer; y : integer);
     begin
+      if IsPlaying then exit;
+      
       if (x >= 0) or (x <= _gridSize) then
         if (y >= 0) or (y <= _gridSize) then
         begin
@@ -80,12 +79,14 @@ implementation
                 _grid[_start.x][_start.y] := 0;
                 _start.x := x;
                 _start.y := y;
+                ChangeAlgorithm(_algorithmNumber);
               end;
             if(celltype = 6) then
               begin 
                 _grid[_end.x][_end.y] := 0;
                 _end.x := x;
                 _end.y := y;
+                ChangeAlgorithm(_algorithmNumber);
               end;
             if(_onGridChange <> nil) then
               _onGridChange();
@@ -95,17 +96,25 @@ implementation
   
   procedure StateMachine.CreateGrid();
   begin
+      if IsPlaying then exit;
+    
       _grid := new intArray[_gridSize];
       for var i := 0 to _gridSize-1 do
         _grid[i] := new integer[_gridSize];
       
-      _start.x := 0;
-      _start.y := 0;
-      _grid[0][0] := 5;
+      _start.x := 5;
+      _start.y := 5;
+      _grid[5][5] := 5;
       
+<<<<<<< HEAD
       _end.x := 1;
       _end.y := 0;
       _grid[1][0] := 6;
+=======
+      _end.x := 15;
+      _end.y := 15;
+      _grid[15][15] := 6;
+>>>>>>> 52262ed5857852badb230d90947c8f3d9df315cd
       
       if(_onGridChange <> nil) then
         _onGridChange();
@@ -124,14 +133,11 @@ implementation
     begin
       if(_isPlaying) then begin
         _tick += 1;
-        if(_tick mod (_speed * _speed * _speed) = 0) then
+        if(_tick mod (_speed * _speed * _speed * _speed) = 0) then
         begin
           _tick := 0;
           //DO STAFF
-          //Act();
-          
-          _grid[1][1 + _tick] := 1;
-          _grid[1][1 + 1 - _tick] := 0;
+          Act();
           if(_onGridChange <> nil) then
             _onGridChange();
         end;
@@ -141,10 +147,33 @@ implementation
   procedure StateMachine.ClearGrid();
     begin
       CreateGrid();
+      ChangeAlgorithm(_algorithmNumber);
     end;
     
   procedure StateMachine.Act();
     begin
-      //ACT STAFF  
+      _algorithm.Step();
     end;
+    
+  procedure StateMachine.OnAlgorithmStep();
+  begin
+    var algorithmLayout := _algorithm.GetGridLayout();
+      for var x:=0 to _gridSize-1 do
+        for var y:=0 to _gridSize-1 do
+          if(_grid[x][y] <> 1) and (_grid[x][y] <> 5) and (_grid[x][y] <> 6)then
+            _grid[x][y] := algorithmLayout[x][y];
+      
+      if(_onGridChange <> nil) then
+        _onGridChange();
+  end;
+    
+  procedure StateMachine.ChangeAlgorithm(num : integer);
+  begin
+    _algorithmNumber := num;
+    case num of
+      1: _algorithm := new AStar(_gridSize, _start, _end);
+    end;
+    _algorithm.GridData := _grid;
+    _algorithm.OnStep += OnAlgorithmStep;
+  end;
 end.
