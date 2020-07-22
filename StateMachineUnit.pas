@@ -180,8 +180,8 @@ implementation
     for var x:=0 to _gridSize-1 do
         for var y:=0 to _gridSize-1 do
           begin
-            if(_grid[x][y] = 2) then _closedCells += 1;
-            if(_grid[x][y] = 3) or(_grid[x][y] = 4) then _openCells += 1;
+            if(_grid[x][y] = 2) or (_grid[x][y] = 4)then _closedCells += 1;
+            if(_grid[x][y] = 3)then _openCells += 1;
           end;
           
     ChangeAlgorithm(_algorithmNumber);
