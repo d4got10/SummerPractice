@@ -4,7 +4,8 @@ interface
   uses AlgorithmUnit;
   
   type
-    AStarCell = record
+    AStarCell = class
+      public
       coords : Point;
       fCost : integer;
       gCost : integer;
@@ -45,6 +46,7 @@ interface
         end;
         procedure Step(); override;
         function GetGridLayout() : Grid; override;
+        function GetPathLength() : integer; override;
     end;
     
 implementation
@@ -105,7 +107,7 @@ implementation
             var gCost := cell.gCost + Distance(cell.coords.x, cell.coords.y, neighbour.coords.x, neighbour.coords.y);
             var hCost := Distance(neighbour.coords.x, neighbour.coords.y, _end.x, _end.y);
             var fCost := gCost + hCost;
-            if(neighbour.fCost > fCost) or (neighbour.fCost = fCost) and (neighbour.hCost > hCost) then 
+            if(neighbour.fCost > fCost) {or (neighbour.fCost = fCost) and (neighbour.hCost > hCost)} then 
               begin           
                 neighbour.gCost := gCost;
                 neighbour.hCost := hCost;
@@ -133,6 +135,15 @@ implementation
       temp[cell.coords.x][cell.coords.y] := 4;
     
     GetGridLayout := temp;
+  end;
+  
+  function AStar.GetPathLength() : integer;
+  begin
+    var length := 0;
+    for var i := 0 to _path.Count-2 do
+      length += Distance(_path[i].coords.x, _path[i].coords.y, 
+                         _path[i+1].coords.x, _path[i+1].coords.y);
+    GetPathLength := length;
   end;
   
 end.

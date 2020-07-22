@@ -59,6 +59,7 @@ type
       procedure Step(); virtual;
       procedure Restart(); virtual;
       
+      function GetPathLength() : integer; virtual;
       function GetGridLayout() : Grid; virtual;
     end;
 
@@ -102,5 +103,10 @@ implementation
     _gridMark := new boolArray[_gridSize];
     for var i := 0 to _gridSize - 1 do
       _gridMark[i] := new boolean[_gridSize];
+  end;
+  
+  function Algorithm.GetPathLength() : integer;
+  begin
+    GetPathLength := 0;
   end;
 end.

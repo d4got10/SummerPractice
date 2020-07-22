@@ -20,6 +20,10 @@ interface
         _algorithmNumber : integer;
         _algorithm : Algorithm;
         
+        _openCells : integer;
+        _closedCells : integer;
+        _pathLength : integer;
+        
         procedure CreateGrid();
         procedure OnAlgorithmStep();
         procedure OnAlgorithmFinish();
@@ -37,6 +41,9 @@ interface
         //Поля
         property GridData : Grid read _grid;
         property IsPlaying : boolean read _isPlaying write _isPlaying;
+        property OpenCells : integer read _openCells;
+        property ClosedCells : integer read _closedCells;
+        property PathLength : integer read _pathLength;
         
         //События
         property OnGridChange : Action read _onGridChange write _onGridChange;
@@ -61,6 +68,7 @@ implementation
       if(speed < 1) then _speed := 1
       else if(speed > 3) then _speed := 3
       else _speed := speed;
+      _speed := 4 - _speed;
       if(_onSpeedChange <> nil) then
         _onSpeedChange(_speed);
     end;
@@ -128,7 +136,7 @@ implementation
     begin
       if(_isPlaying) then begin
         _tick += 1;
-        if(_tick mod (_speed * _speed * _speed * _speed) = 0) then
+        if(_tick mod (_speed * _speed * _speed) = 0) then
         begin
           _tick := 0;
           //DO STAFF
@@ -164,12 +172,24 @@ implementation
     
   procedure StateMachine.OnAlgorithmFinish();
   begin
+    _openCells := 0;
+    _closedCells := 0;
+    _pathLength := _algorithm.GetPathLength();
+    
+    
+    for var x:=0 to _gridSize-1 do
+        for var y:=0 to _gridSize-1 do
+          begin
+            if(_grid[x][y] = 2) then _closedCells += 1;
+            if(_grid[x][y] = 3) then _openCells += 1;
+          end;
+          
     ChangeAlgorithm(_algorithmNumber);
     _isPlaying := false;
     if(_onComplete <> nil)then
       _onComplete();
   end;
-    
+  
   procedure StateMachine.ChangeAlgorithm(num : integer);
   begin
     _algorithmNumber := num;
