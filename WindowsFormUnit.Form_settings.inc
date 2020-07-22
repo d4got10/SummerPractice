@@ -26,6 +26,7 @@ procedure InitializeComponent;
         self.label_CellsResearchedInfo := new System.Windows.Forms.Label();
         self.timer := new System.Windows.Forms.Timer(self.components);
         self.groupBox_Result := new System.Windows.Forms.GroupBox();
+        self.label_Info := new System.Windows.Forms.Label();
         self.groupBox_Algorithms.SuspendLayout();
         self.groupBox_CellTypes.SuspendLayout();
         self.groupBox_animSpeed.SuspendLayout();
@@ -70,12 +71,10 @@ procedure InitializeComponent;
         // 
         // rb_cell5
         // 
-        self.rb_cell5.Checked := true;
         self.rb_cell5.Location := new System.Drawing.Point(21, 28);
         self.rb_cell5.Name := 'rb_cell5';
         self.rb_cell5.Size := new System.Drawing.Size(142, 24);
         self.rb_cell5.TabIndex := 0;
-        self.rb_cell5.TabStop := true;
         self.rb_cell5.Text := 'Точка начала';
         self.rb_cell5.UseVisualStyleBackColor := true;
         self.rb_cell5.MouseClick += rb_cell5_MouseClick;
@@ -107,7 +106,7 @@ procedure InitializeComponent;
         self.groupBox_Algorithms.Controls.Add(self.rb_algWidthSearch);
         self.groupBox_Algorithms.Controls.Add(self.rb_algDeepSearch);
         self.groupBox_Algorithms.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.groupBox_Algorithms.Location := new System.Drawing.Point(37, 402);
+        self.groupBox_Algorithms.Location := new System.Drawing.Point(37, 367);
         self.groupBox_Algorithms.Name := 'groupBox_Algorithms';
         self.groupBox_Algorithms.Size := new System.Drawing.Size(209, 153);
         self.groupBox_Algorithms.TabIndex := 2;
@@ -121,7 +120,7 @@ procedure InitializeComponent;
         self.groupBox_CellTypes.Controls.Add(self.rb_cell0);
         self.groupBox_CellTypes.Controls.Add(self.rb_cell1);
         self.groupBox_CellTypes.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.groupBox_CellTypes.Location := new System.Drawing.Point(37, 28);
+        self.groupBox_CellTypes.Location := new System.Drawing.Point(37, 12);
         self.groupBox_CellTypes.Name := 'groupBox_CellTypes';
         self.groupBox_CellTypes.Size := new System.Drawing.Size(209, 160);
         self.groupBox_CellTypes.TabIndex := 1;
@@ -141,7 +140,7 @@ procedure InitializeComponent;
         // b_Act_Pause
         // 
         self.b_Act_Pause.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.b_Act_Pause.Location := new System.Drawing.Point(37, 268);
+        self.b_Act_Pause.Location := new System.Drawing.Point(37, 246);
         self.b_Act_Pause.Name := 'b_Act_Pause';
         self.b_Act_Pause.Size := new System.Drawing.Size(209, 33);
         self.b_Act_Pause.TabIndex := 4;
@@ -153,7 +152,7 @@ procedure InitializeComponent;
         // 
         self.b_Stop.Enabled := false;
         self.b_Stop.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.b_Stop.Location := new System.Drawing.Point(37, 307);
+        self.b_Stop.Location := new System.Drawing.Point(37, 285);
         self.b_Stop.Name := 'b_Stop';
         self.b_Stop.Size := new System.Drawing.Size(209, 33);
         self.b_Stop.TabIndex := 4;
@@ -164,7 +163,7 @@ procedure InitializeComponent;
         // b_DoStep
         // 
         self.b_DoStep.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.b_DoStep.Location := new System.Drawing.Point(37, 346);
+        self.b_DoStep.Location := new System.Drawing.Point(37, 324);
         self.b_DoStep.Name := 'b_DoStep';
         self.b_DoStep.Size := new System.Drawing.Size(209, 37);
         self.b_DoStep.TabIndex := 4;
@@ -175,7 +174,7 @@ procedure InitializeComponent;
         // b_ClearGrid
         // 
         self.b_ClearGrid.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.b_ClearGrid.Location := new System.Drawing.Point(37, 203);
+        self.b_ClearGrid.Location := new System.Drawing.Point(37, 187);
         self.b_ClearGrid.Name := 'b_ClearGrid';
         self.b_ClearGrid.Size := new System.Drawing.Size(209, 37);
         self.b_ClearGrid.TabIndex := 4;
@@ -186,7 +185,7 @@ procedure InitializeComponent;
         // b_Exit
         // 
         self.b_Exit.Font := new System.Drawing.Font('Microsoft Sans Serif', 9, System.Drawing.FontStyle.Bold);
-        self.b_Exit.Location := new System.Drawing.Point(37, 747);
+        self.b_Exit.Location := new System.Drawing.Point(37, 764);
         self.b_Exit.Name := 'b_Exit';
         self.b_Exit.Size := new System.Drawing.Size(209, 37);
         self.b_Exit.TabIndex := 4;
@@ -238,7 +237,7 @@ procedure InitializeComponent;
         self.groupBox_animSpeed.Controls.Add(self.rb_speed2);
         self.groupBox_animSpeed.Controls.Add(self.rb_speed3);
         self.groupBox_animSpeed.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.groupBox_animSpeed.Location := new System.Drawing.Point(37, 570);
+        self.groupBox_animSpeed.Location := new System.Drawing.Point(37, 526);
         self.groupBox_animSpeed.Name := 'groupBox_animSpeed';
         self.groupBox_animSpeed.Size := new System.Drawing.Size(209, 73);
         self.groupBox_animSpeed.TabIndex := 6;
@@ -248,7 +247,7 @@ procedure InitializeComponent;
         // label_Path
         // 
         self.label_Path.Font := new System.Drawing.Font('Microsoft Sans Serif', 9, System.Drawing.FontStyle.Bold);
-        self.label_Path.Location := new System.Drawing.Point(6, 12);
+        self.label_Path.Location := new System.Drawing.Point(6, 66);
         self.label_Path.Name := 'label_Path';
         self.label_Path.Size := new System.Drawing.Size(117, 23);
         self.label_Path.TabIndex := 7;
@@ -258,7 +257,7 @@ procedure InitializeComponent;
         // label_CellsResearched
         // 
         self.label_CellsResearched.Font := new System.Drawing.Font('Microsoft Sans Serif', 9, System.Drawing.FontStyle.Bold);
-        self.label_CellsResearched.Location := new System.Drawing.Point(6, 35);
+        self.label_CellsResearched.Location := new System.Drawing.Point(6, 89);
         self.label_CellsResearched.Name := 'label_CellsResearched';
         self.label_CellsResearched.Size := new System.Drawing.Size(117, 41);
         self.label_CellsResearched.TabIndex := 7;
@@ -268,7 +267,7 @@ procedure InitializeComponent;
         // label_PathInfo
         // 
         self.label_PathInfo.Font := new System.Drawing.Font('Microsoft Sans Serif', 9, System.Drawing.FontStyle.Bold);
-        self.label_PathInfo.Location := new System.Drawing.Point(121, 12);
+        self.label_PathInfo.Location := new System.Drawing.Point(121, 66);
         self.label_PathInfo.Name := 'label_PathInfo';
         self.label_PathInfo.Size := new System.Drawing.Size(82, 23);
         self.label_PathInfo.TabIndex := 7;
@@ -276,7 +275,7 @@ procedure InitializeComponent;
         // label_CellsResearchedInfo
         // 
         self.label_CellsResearchedInfo.Font := new System.Drawing.Font('Microsoft Sans Serif', 9, System.Drawing.FontStyle.Bold);
-        self.label_CellsResearchedInfo.Location := new System.Drawing.Point(121, 44);
+        self.label_CellsResearchedInfo.Location := new System.Drawing.Point(121, 98);
         self.label_CellsResearchedInfo.Name := 'label_CellsResearchedInfo';
         self.label_CellsResearchedInfo.Size := new System.Drawing.Size(82, 23);
         self.label_CellsResearchedInfo.TabIndex := 7;
@@ -289,16 +288,25 @@ procedure InitializeComponent;
         // 
         // groupBox_Result
         // 
+        self.groupBox_Result.Controls.Add(self.label_Info);
         self.groupBox_Result.Controls.Add(self.label_Path);
         self.groupBox_Result.Controls.Add(self.label_CellsResearchedInfo);
         self.groupBox_Result.Controls.Add(self.label_CellsResearched);
         self.groupBox_Result.Controls.Add(self.label_PathInfo);
-        self.groupBox_Result.Location := new System.Drawing.Point(37, 655);
+        self.groupBox_Result.Location := new System.Drawing.Point(37, 605);
         self.groupBox_Result.Name := 'groupBox_Result';
-        self.groupBox_Result.Size := new System.Drawing.Size(209, 79);
+        self.groupBox_Result.Size := new System.Drawing.Size(209, 136);
         self.groupBox_Result.TabIndex := 8;
         self.groupBox_Result.TabStop := false;
         self.groupBox_Result.Visible := false;
+        // 
+        // label_Info
+        // 
+        self.label_Info.Location := new System.Drawing.Point(6, 20);
+        self.label_Info.Name := 'label_Info';
+        self.label_Info.Size := new System.Drawing.Size(197, 38);
+        self.label_Info.TabIndex := 8;
+        self.label_Info.Text := 'Длина шага напрямую 10, по диагонали 14';
         // 
         // Form_Settings
         // 
