@@ -54,6 +54,7 @@ type
     components: System.ComponentModel.IContainer;
     rb_cell0: RadioButton;
     groupBox_Result: GroupBox;
+    label_Info: &Label;
     rb_algDejkstra: RadioButton;
     {$include WindowsFormUnit.Form_Settings.inc}
   {$endregion FormDesigner}
@@ -73,10 +74,11 @@ type
       b_DoStep.Enabled := switched;
     end;
     
-    procedure ShowResult;
+    procedure Finish;
     begin
-      //label_Path.Text := ;
-      //label_CellsResearched.Text := ;
+      Activation(true);
+      label_PathInfo.Text := IntToStr(machine.PathLength);
+      label_CellsResearchedInfo.Text := IntToStr(machine.ClosedCells);
       groupBox_Result.Visible := true;
     end;
     
@@ -88,8 +90,8 @@ implementation
 
 procedure Form_Settings.Form_Settings_Shown(sender: Object; e: EventArgs);
 begin
-  celltype := 5;
   machine.SetSpeed(2);
+  machine.OnComplete := Finish;
 end;
 
 procedure Form_Settings.timer_Tick(sender: Object; e: EventArgs);
@@ -181,7 +183,7 @@ end;
 
 procedure Form_Settings.rb_algAStar_MouseClick(sender: Object; e: MouseEventArgs);
 begin
-  
+  machine.ChangeAlgorithm(1);
 end;
 
 
