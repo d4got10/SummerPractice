@@ -111,9 +111,9 @@ implementation
       for var i := 0 to _gridSize-1 do
         _grid[i] := new integer[_gridSize];
       
-      _start.x := 5;
-      _start.y := 5;
-      _grid[5][5] := 5;
+      _start.x := 4;
+      _start.y := 4;
+      _grid[4][4] := 5;
       
       _end.x := 15;
       _end.y := 15;
@@ -148,8 +148,18 @@ implementation
     end;
   
   procedure StateMachine.ClearGrid();
+    var tempStart, tempEnd : Point;
     begin
+      tempStart := _start;
+      tempEnd := _end;
       CreateGrid();
+      _grid[_start.x][_start.y] := 0;
+      _start := tempStart;
+      _grid[_start.x][_start.y] := 5;
+      
+      _grid[_end.x][_end.y] := 0;
+      _end := tempEnd;
+      _grid[_end.x][_end.y] := 6;
       ChangeAlgorithm(_algorithmNumber);
     end;
     
