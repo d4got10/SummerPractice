@@ -81,14 +81,15 @@ implementation
       begin
         _path.Add(cell);
         cell := _aStarGrid[(cell.from.x, cell.from.y)];
-      end;
-      
-      if(_onFinish <> nil) then
-        _onFinish();
+      end;     
     end;
     
     if(_onStep <> nil) then
       _onStep();
+    
+    if(found) then
+      if(_onFinish <> nil) then 
+        _onFinish();
   end;
   
   function AStar.GetNeighbours(cell : AStarCell) : List<AStarCell>;
@@ -98,8 +99,9 @@ implementation
     neighbours := new List<AStarCell>;
     for var x := -1 to 1 do
       for var y := -1 to 1 do 
-        if(x <> 0) or (y <> 0)then
-          if _aStarGrid.TryGetValue((cell.coords.x + x, cell.coords.y + y), neighbour) then begin
+        if(x <> 0) or (y <> 0) then
+          if _aStarGrid.TryGetValue((cell.coords.x + x, cell.coords.y + y), neighbour) 
+              and IsWalkable(cell.coords.x + x, cell.coords.y + y) then begin
             var gCost := cell.gCost + Distance(cell.coords.x, cell.coords.y, neighbour.coords.x, neighbour.coords.y);
             var hCost := Distance(neighbour.coords.x, neighbour.coords.y, _end.x, _end.y);
             var fCost := gCost + hCost;

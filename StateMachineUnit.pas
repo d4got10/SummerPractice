@@ -22,6 +22,7 @@ interface
         
         procedure CreateGrid();
         procedure OnAlgorithmStep();
+        procedure OnAlgorithmFinish();
       public
         //Конструктор
         constructor(gridSize : integer);
@@ -161,6 +162,14 @@ implementation
         _onGridChange();
   end;
     
+  procedure StateMachine.OnAlgorithmFinish();
+  begin
+    ChangeAlgorithm(_algorithmNumber);
+    _isPlaying := false;
+    if(_onComplete <> nil)then
+      _onComplete();
+  end;
+    
   procedure StateMachine.ChangeAlgorithm(num : integer);
   begin
     _algorithmNumber := num;
@@ -169,5 +178,6 @@ implementation
     end;
     _algorithm.GridData := _grid;
     _algorithm.OnStep += OnAlgorithmStep;
+    _algorithm.OnFinish += OnAlgorithmFinish;
   end;
 end.

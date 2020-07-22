@@ -1,7 +1,7 @@
-﻿uses Unit1, Unit2;
+﻿uses WindowsFormUnit, GraphWindowUnit;
 
 begin
   System.Windows.Forms.Application.EnableVisualStyles();
   System.Windows.Forms.Application.SetCompatibleTextRenderingDefault(false);
-  System.Windows.Forms.Application.Run(new Form1)
+  System.Windows.Forms.Application.Run(new Form_Settings)
 end.
