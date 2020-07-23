@@ -59,6 +59,7 @@ interface
         procedure ClearGrid();
         procedure Act();
         procedure ChangeAlgorithm(num : integer);
+        procedure ClearAlgorithmLayout();
          
     end;
   
@@ -210,5 +211,10 @@ implementation
     _algorithm.GridData := _grid;
     _algorithm.OnStep += OnAlgorithmStep;
     _algorithm.OnFinish += OnAlgorithmFinish;
+  end;
+  
+  procedure StateMachine.ClearAlgorithmLayout();
+  begin
+    ChangeAlgorithm(_algorithmNumber);
   end;
 end.
