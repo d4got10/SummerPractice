@@ -25,8 +25,10 @@ type
     procedure rb_speed2_MouseClick(sender: Object; e: MouseEventArgs);
     procedure rb_speed3_MouseClick(sender: Object; e: MouseEventArgs);
     
+    procedure rb_algDejkstra_MouseClick(sender: Object; e: MouseEventArgs);
     procedure rb_algAStar_MouseClick(sender: Object; e: MouseEventArgs);
     procedure rb_algWidthSearch_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure rb_algDeepSearch_MouseClick(sender: Object; e: MouseEventArgs);
   {$region FormDesigner}
   private
     {$resource WindowsFormUnit.Form_Settings.resources}
@@ -92,6 +94,7 @@ implementation
 procedure Form_Settings.Form_Settings_Shown(sender: Object; e: EventArgs);
 begin
   celltype := 5;
+  machine.ChangeAlgorithm(0);
   machine.SetSpeed(2);
   machine.OnComplete := Finish;
 end;
@@ -186,6 +189,11 @@ begin
   machine.SetSpeed(3);
 end;
 
+procedure Form_Settings.rb_algDejkstra_MouseClick(sender: Object; e: MouseEventArgs);
+begin
+  machine.ChangeAlgorithm(0);
+end;
+
 procedure Form_Settings.rb_algAStar_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   machine.ChangeAlgorithm(1);
@@ -194,6 +202,11 @@ end;
 procedure Form_Settings.rb_algWidthSearch_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   machine.ChangeAlgorithm(2);
+end;
+
+procedure Form_Settings.rb_algDeepSearch_MouseClick(sender: Object; e: MouseEventArgs);
+begin
+  machine.ChangeAlgorithm(3);
 end;
 
 

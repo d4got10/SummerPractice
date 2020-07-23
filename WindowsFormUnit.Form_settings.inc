@@ -43,6 +43,7 @@ procedure InitializeComponent;
         self.rb_algDejkstra.TabStop := true;
         self.rb_algDejkstra.Text := 'Дейкстры';
         self.rb_algDejkstra.UseVisualStyleBackColor := true;
+        self.rb_algDejkstra.MouseClick += rb_algDejkstra_MouseClick;
         // 
         // rb_algAStar
         // 
@@ -72,6 +73,7 @@ procedure InitializeComponent;
         self.rb_algDeepSearch.TabIndex := 0;
         self.rb_algDeepSearch.Text := 'Поиск в глубину';
         self.rb_algDeepSearch.UseVisualStyleBackColor := true;
+        self.rb_algDeepSearch.MouseClick += rb_algDeepSearch_MouseClick;
         // 
         // rb_cell5
         // 
