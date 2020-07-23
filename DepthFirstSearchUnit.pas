@@ -14,7 +14,7 @@
           _point, _section : Point;
           _dist : Grid;
           _prev : intArray;
-          _head, _node : Stack
+          _head, _node : Stack;
           _timeMark : intArray;
           _constantMark : intArray;
           //Добавить, если нужно 
@@ -44,7 +44,7 @@ Implementation
               Neighbour := true;
               section.x := cell.x + x;
               section.y := cell.y + y;
-             break;
+              break;
             end
           else Neighbour := false;       
     end;
@@ -67,9 +67,9 @@ Implementation
               _point := _head^.data;
               dispose(_head);
               _head^.next := _node;
-            end
-          //else (если не найден выход)
-        end
+              _prev[_point.x][_point.y] := _point;
+            end;
+        end;
       else if _onFinish <> nil then _onFinish;
         if _onStep <> nil then _onStep;  
      end;
@@ -79,6 +79,14 @@ Implementation
       var temp := new intArray[_gridSize];
       for var i := 0 to _gridSize-1 do
         temp[i] := new integer[_gridSize];
+      
+      for var x := 0 to _gridSize - 1 do
+        for var y := 0 to _gridSize - 1 do
+          begin
+            temp[_gridMark.x][_gridMark.y] := 3;
+            temp[_prev.x][_prev.y] := 2; 
+            temp[_prev.x][_prev.y] := 4;
+          end;
       
       GetGridLayout := temp
     end;

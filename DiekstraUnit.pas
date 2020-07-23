@@ -10,6 +10,8 @@ Interface
        _prev : intArray;
        _point : Point;
        _length : integer
+       _timeMark : intArray;
+       _constantMark : intArray;
       //Заполнить, если нужно будет
       public
         constructor Create(gridSize : integer; start, finish : Point);
@@ -38,6 +40,7 @@ Implementation
   begin
     if not _gridMark[finish.x][finish.y] then 
       begin
+        {Обновление временных меток}
         for var x := 0 to _gridSize - 1 do
           for var y := 0 to _gridSize - 1 do
             if not _gridMark[x][y] and (_dist[x][y] > _dist[_point.x][_point.y] 
@@ -45,7 +48,9 @@ Implementation
               begin
                 _dist[x][y] := _dist[_point.x][_point.y] + Weight[_point.x][point.y];
                 _prev[x][y] := _point;
+                _
               end;
+        {Поиск вершины с минимальной временной меткой}
         for var x := 0 to _gridSize - 1 do
           for var y := 0 to _gidSize - 1 do
             if not _gridMark[x][y] then
@@ -55,6 +60,7 @@ Implementation
                   _point := _dist[x][y];
                 end;
         _gridMark[_point.x][_point.y] := TRUE;
+        _constantMark[_point.x][_point.y] := _point;
       end
      else if _onFinish <> nil then _onFinish;
      if _onStep <> nil then _onStep;
@@ -65,6 +71,14 @@ Implementation
       var temp := new intArray[_gridSize];
       for var i := 0 to _gridSize-1 do
         temp[i] := new integer[_gridSize];
+      
+      for var x := 0 to _gridSize - 1 do
+        for y := to _gridSize - do
+          begin  
+            temp[_gridMark.x][_gridMark.y] := 3;
+            temp[_constantMark.x][_constantMark.y] := 2; 
+            temp[_prev.x][prev.y] := 4;
+          end;
       
       GetGridLayout := temp
     end;
