@@ -26,6 +26,7 @@ type
     procedure rb_speed3_MouseClick(sender: Object; e: MouseEventArgs);
     
     procedure rb_algAStar_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure rb_algWidthSearch_MouseClick(sender: Object; e: MouseEventArgs);
   {$region FormDesigner}
   private
     {$resource WindowsFormUnit.Form_Settings.resources}
@@ -184,6 +185,11 @@ end;
 procedure Form_Settings.rb_algAStar_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   machine.ChangeAlgorithm(1);
+end;
+
+procedure Form_Settings.rb_algWidthSearch_MouseClick(sender: Object; e: MouseEventArgs);
+begin
+  machine.ChangeAlgorithm(2);
 end;
 
 

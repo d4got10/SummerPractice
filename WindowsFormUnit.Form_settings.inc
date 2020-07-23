@@ -1,4 +1,4 @@
-procedure InitializeComponent;
+﻿procedure InitializeComponent;
     begin
         self.components := new System.ComponentModel.Container();
         self.rb_algDejkstra := new System.Windows.Forms.RadioButton();
@@ -59,6 +59,7 @@ procedure InitializeComponent;
         self.rb_algWidthSearch.TabIndex := 0;
         self.rb_algWidthSearch.Text := 'Поиск в ширину';
         self.rb_algWidthSearch.UseVisualStyleBackColor := true;
+        self.rb_algWidthSearch.MouseClick += rb_algWidthSearch_MouseClick;
         // 
         // rb_algDeepSearch
         // 

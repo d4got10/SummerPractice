@@ -3,6 +3,8 @@
   <Items>
     <Item Type="SourceFile" Name="SummerPractice.pas" Path="SummerPractice.pas" />
     <Item Type="SourceFile" Name="StateMachineUnit.pas" Path="StateMachineUnit.pas" />
+    <Item Type="SourceFile" Name="ВFSUnit.pas" Path="ВFSUnit.pas" />
+    <Item Type="SourceFile" Name="WindowsFormUnit.pas" Path="WindowsFormUnit.pas" />
     <Item Type="Reference" AssemblyName="System" FullAssemblyName="System.dll" />
     <Item Type="Reference" AssemblyName="System.Windows.Forms" FullAssemblyName="System.Windows.Forms.dll" />
     <Item Type="Reference" AssemblyName="System.Drawing" FullAssemblyName="System.Drawing.dll" />

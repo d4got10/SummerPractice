@@ -1,7 +1,7 @@
 ﻿unit StateMachineUnit;
 
 interface
-  uses AlgorithmUnit, AStarUnit;
+  uses AlgorithmUnit, AStarUnit, ВFSUnit;
 
   type     
     StateMachine = class
@@ -205,6 +205,7 @@ implementation
     _algorithmNumber := num;
     case num of
       1: _algorithm := new AStar(_gridSize, _start, _end);
+      2: _algorithm := new BFS(_gridSize, _start, _end);
     end;
     _algorithm.GridData := _grid;
     _algorithm.OnStep += OnAlgorithmStep;
