@@ -91,6 +91,7 @@ implementation
 
 procedure Form_Settings.Form_Settings_Shown(sender: Object; e: EventArgs);
 begin
+  celltype := 5;
   machine.SetSpeed(2);
   machine.OnComplete := Finish;
 end;
@@ -115,6 +116,9 @@ begin
         machine.IsPlaying := true;
         b_Act_Pause.Text := 'Приостановить';
         Activation(false);
+        groupBox_Result.Visible := false;
+        label_PathInfo.Text := '';
+        label_CellsResearchedInfo.Text := '';
     end
     else begin
        machine.IsPlaying := false;
@@ -133,11 +137,11 @@ end;
 
 procedure Form_Settings.b_DoStep_Click(sender: Object; e: EventArgs);
 begin
-  machine.Act();
-  b_Act_Pause.Text := 'Продолжить';
   Activation(false);
+  b_Act_Pause.Text := 'Продолжить';
   b_ClearGrid.Enabled := true;
   b_DoStep.Enabled := true;
+  machine.Act();
 end;
 
 procedure Form_Settings.b_Exit_Click(sender: Object; e: EventArgs);

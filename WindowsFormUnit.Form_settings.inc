@@ -1,4 +1,4 @@
-﻿procedure InitializeComponent;
+procedure InitializeComponent;
     begin
         self.components := new System.ComponentModel.Container();
         self.rb_algDejkstra := new System.Windows.Forms.RadioButton();
@@ -35,10 +35,12 @@
         // 
         // rb_algDejkstra
         // 
+        self.rb_algDejkstra.Checked := true;
         self.rb_algDejkstra.Location := new System.Drawing.Point(21, 25);
         self.rb_algDejkstra.Name := 'rb_algDejkstra';
         self.rb_algDejkstra.Size := new System.Drawing.Size(182, 24);
         self.rb_algDejkstra.TabIndex := 0;
+        self.rb_algDejkstra.TabStop := true;
         self.rb_algDejkstra.Text := 'Дейкстры';
         self.rb_algDejkstra.UseVisualStyleBackColor := true;
         // 
@@ -50,6 +52,7 @@
         self.rb_algAStar.TabIndex := 0;
         self.rb_algAStar.Text := 'А-звезда';
         self.rb_algAStar.UseVisualStyleBackColor := true;
+        self.rb_algAStar.MouseClick += rb_algAStar_MouseClick;
         // 
         // rb_algWidthSearch
         // 
@@ -72,10 +75,12 @@
         // 
         // rb_cell5
         // 
+        self.rb_cell5.Checked := true;
         self.rb_cell5.Location := new System.Drawing.Point(21, 28);
         self.rb_cell5.Name := 'rb_cell5';
         self.rb_cell5.Size := new System.Drawing.Size(142, 24);
         self.rb_cell5.TabIndex := 0;
+        self.rb_cell5.TabStop := true;
         self.rb_cell5.Text := 'Точка начала';
         self.rb_cell5.UseVisualStyleBackColor := true;
         self.rb_cell5.MouseClick += rb_cell5_MouseClick;
