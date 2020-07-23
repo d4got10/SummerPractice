@@ -25,6 +25,7 @@ Interface
         end;
         procedure Step(); override;
         function GetGridLayout() : Grid; override;
+        function GetPathLength() : integer; override;
     end;
     
 Implementation
@@ -81,5 +82,10 @@ Implementation
           end;
       
       GetGridLayout := temp
+    end;
+    
+  function GetPathLength() : integer;
+    begin
+      GetPathLenght := 0;
     end;
 end.      
