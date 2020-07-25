@@ -52,7 +52,7 @@
         if (_openSet <> nil) and (_openSet.Count > 0) then
           begin
             if(cell = _dfsGrid[(_end.x, _end.y)]) then
-              found := true;
+              found := true
             else 
               begin
                 var neighbours := GetNeighbours(cell);
