@@ -1,10 +1,10 @@
-﻿Unit DiekstraUnit;
+﻿Unit DijkstraUnit;
 
 Interface 
   uses AlgorithmUnit;
   
   type 
-    Diekstra = class(Algorithm)
+    Dijkstra = class(Algorithm)
       private
        _dist : Grid;
        _prev : intArray;
@@ -32,7 +32,7 @@ Interface
     end;
     
 Implementation
-  function Diekstra.Weight(from, there: Point) : Integer;
+  function Dijkstra.Weight(from, there: Point) : Integer;
   begin
     if IsWalkable(from.x, from.y) and IsWalkable(there.x, there.y) 
     and (Distance(from.x, from.y, there.x, there.y) < 20)  then
@@ -40,7 +40,7 @@ Implementation
     else 
       Weight := MaxInt;    
   end;               
-  procedure Diekstra.Step();
+  procedure Dijkstra.Step();
   var cell : Point;
       x, y : integer;
   begin
@@ -73,7 +73,7 @@ Implementation
      if _onStep <> nil then _onStep;
   end; 
   
-  function Diekstra.GetGridLayout() : Grid;
+  function Dijkstra.GetGridLayout() : Grid;
     begin
       var temp := new intArray[_gridSize];
       for var i := 0 to _gridSize-1 do

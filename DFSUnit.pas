@@ -53,23 +53,25 @@
           begin
             if(cell = _dfsGrid[(_end.x, _end.y)]) then
               found := true;
-            
-            var neighbours := GetNeighbours(cell);
-        foreach var neighbour in neighbours do
-          if not(_closedSet.Contains(neighbour))
-             and not(_openSet.Contains(neighbour)) then
-               begin
-                 _openSet.Push(neighbour);
-                 neighbour.distance := cell.distance + Distance(cell.coords.x, cell.coords.y,
-                                                                neighbour.coords.x, neighbour.coords.y);
-                 neighbour.from := cell.coords;
-               end
-           else if _openSet <> nil then
-             begin
-               cell := _openSet.Pop();
-               _closedSet.Add(cell);
-             end;
-          end;
+            else 
+              begin
+                var neighbours := GetNeighbours(cell);
+                foreach var neighbour in neighbours do
+                  if not(_closedSet.Contains(neighbour))
+                  and not(_openSet.Contains(neighbour)) then
+                     begin
+                       _openSet.Push(neighbour);
+                       neighbour.distance := cell.distance + Distance(cell.coords.x, cell.coords.y,
+                                                                      neighbour.coords.x, neighbour.coords.y);
+                       neighbour.from := cell.coords;
+                     end
+                  else if _openSet <> nil then
+                   begin
+                     cell := _openSet.Pop();
+                     _closedSet.Add(cell);
+                   end;
+              end;
+           end;
       
       if(found)then begin
         var tempCell := _dfsGrid[(_end.x, _end.y)];
@@ -115,19 +117,14 @@
     function DFS.GetNeighbours(cell : DFSCell) : List<DFSCell>;
     var neighbours : List<DFSCell>;
         neighbour : DFSCell;
-        isNeighbour : boolean;
     begin
-      isNeighbour := true;
       neighbours := new List<DFSCell>;
       for var x := -1 to 1 do
         for var y := -1 to 1 do 
           if(x <> 0) or (y <> 0) then
             if(_dfsGrid.TryGetValue((cell.coords.x + x, cell.coords.y + y), neighbour)
-            and IsWalkable(cell.coords.x + x, cell.coords.y + y)) and isNeighbour then
-              begin
-                neighbours.Add(neighbour);
-                GetNeighbours := neighbours;
-                isNeighbour := false;
-              end;
+              and IsWalkable(cell.coords.x + x, cell.coords.y + y)) then
+              neighbours.Add(neighbour);
+      GetNeighbours := neighbours;
     end;
 end.      
