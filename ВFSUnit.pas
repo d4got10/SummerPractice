@@ -57,14 +57,16 @@ implementation
         
         var neighbours := GetNeighbours(cell);
         foreach var neighbour in neighbours do
-          if not(_closedSet.Contains(neighbour))
-             and not(_openSet.Contains(neighbour)) then
+          if not(_closedSet.Contains(neighbour)) then begin
+             var newDist := cell.distance + Distance(cell.coords.x, cell.coords.y,
+                                                                neighbour.coords.x, neighbour.coords.y);
+             if (neighbour.distance > newDist) then
                begin
                  _openSet.Enqueue(neighbour);
-                 neighbour.distance := cell.distance + Distance(cell.coords.x, cell.coords.y,
-                                                                neighbour.coords.x, neighbour.coords.y);
+                 neighbour.distance := newDist;
                  neighbour.from := cell.coords;
-               end;    
+               end;
+          end;
       end;
       
       if(found)then begin
@@ -99,15 +101,6 @@ implementation
       GetGridLayout := temp;
     end;
     
-    function BFS.GetPathLength() : integer;
-    begin
-      var length := 0;
-      for var i := 0 to _path.Count-2 do
-        length += Distance(_path[i].coords.x, _path[i].coords.y, 
-                           _path[i+1].coords.x, _path[i+1].coords.y);
-      GetPathLength := length;
-    end;
-    
     function BFS.GetNeighbours(cell : BFSCell) : List<BFSCell>;
     var neighbours : List<BFSCell>;
         neighbour : BFSCell;
@@ -120,5 +113,14 @@ implementation
             and IsWalkable(cell.coords.x + x, cell.coords.y + y)) then
             neighbours.Add(neighbour);
       GetNeighbours := neighbours;
+    end;
+    
+    function BFS.GetPathLength() : integer;
+    begin
+      var length := 0;
+      for var i := 0 to _path.Count-2 do
+        length += Distance(_path[i].coords.x, _path[i].coords.y, 
+                           _path[i+1].coords.x, _path[i+1].coords.y);
+      GetPathLength := length;
     end;
 end.

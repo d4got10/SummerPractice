@@ -63,7 +63,10 @@ implementation
       _openSet.Remove(cell);
       
       if(cell.coords = _end) then
+      begin
+        _closedSet.Add(cell);
         found := true
+      end
       else 
       begin
         var neighbours := GetNeighbours(cell);
@@ -83,7 +86,8 @@ implementation
       begin
         _path.Add(cell);
         cell := _aStarGrid[(cell.from.x, cell.from.y)];
-      end;     
+      end;
+      _path.Add(_aStarGrid[(_start.x, _start.y)]);
     end;
     
     if(_onStep <> nil) then
@@ -140,7 +144,7 @@ implementation
   function AStar.GetPathLength() : integer;
   begin
     var length := 0;
-    for var i := 0 to _path.Count-2 do
+    for var i := _path.Count-2 downto 0 do
       length += Distance(_path[i].coords.x, _path[i].coords.y, 
                          _path[i+1].coords.x, _path[i+1].coords.y);
     GetPathLength := length;
