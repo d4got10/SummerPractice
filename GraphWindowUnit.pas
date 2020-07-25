@@ -19,6 +19,7 @@ implementation
 procedure ColorCell(x, y: real; mb: integer);
 begin
   if mb = 1 then  begin
+    machine.ClearAlgorithmLayout();
     machine.SetCellType(celltype, trunc(x), trunc(y));
   end;
 end;

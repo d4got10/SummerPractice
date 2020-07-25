@@ -218,5 +218,6 @@ implementation
   procedure StateMachine.ClearAlgorithmLayout();
   begin
     ChangeAlgorithm(_algorithmNumber);
+    OnAlgorithmStep();
   end;
 end.
