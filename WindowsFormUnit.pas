@@ -11,9 +11,9 @@ type
     procedure timer_Tick(sender: Object; e: EventArgs);
     
     procedure b_ClearGrid_Click(sender: Object; e: EventArgs);
-    procedure b_Act_Pause_Click(sender: Object; e: EventArgs);
+    procedure b_Play_Pause_Click(sender: Object; e: EventArgs);
     procedure b_Stop_Click(sender: Object; e: EventArgs);
-    procedure b_DoStep_Click(sender: Object; e: EventArgs);
+    procedure b_Act_Click(sender: Object; e: EventArgs);
     procedure b_Exit_Click(sender: Object; e: EventArgs);
     
     procedure rb_cell0_MouseClick(sender: Object; e: MouseEventArgs);
@@ -25,24 +25,24 @@ type
     procedure rb_speed2_MouseClick(sender: Object; e: MouseEventArgs);
     procedure rb_speed3_MouseClick(sender: Object; e: MouseEventArgs);
     
-    procedure rb_algDejkstra_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure rb_algDijkstra_MouseClick(sender: Object; e: MouseEventArgs);
     procedure rb_algAStar_MouseClick(sender: Object; e: MouseEventArgs);
-    procedure rb_algWidthSearch_MouseClick(sender: Object; e: MouseEventArgs);
-    procedure rb_algDeepSearch_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure rb_algWFS_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure rb_algDFS_MouseClick(sender: Object; e: MouseEventArgs);
   {$region FormDesigner}
   private
     {$resource WindowsFormUnit.Form_Settings.resources}
     rb_algAStar: RadioButton;
-    rb_algWidthSearch: RadioButton;
-    rb_algDeepSearch: RadioButton;
+    rb_algWFS: RadioButton;
+    rb_algDFS: RadioButton;
     rb_cell5: RadioButton;
     rb_cell6: RadioButton;
     rb_cell1: RadioButton;
     groupBox_Algorithms: GroupBox;
     groupBox_CellTypes: GroupBox;
-    b_Act_Pause: Button;
+    b_Play_Pause: Button;
     b_Stop: Button;
-    b_DoStep: Button;
+    b_Act: Button;
     b_ClearGrid: Button;
     b_Exit: Button;
     rb_speed1: RadioButton;
@@ -58,7 +58,7 @@ type
     rb_cell0: RadioButton;
     groupBox_Result: GroupBox;
     label_Info: &Label;
-    rb_algDejkstra: RadioButton;
+    rb_algDijkstra: RadioButton;
     {$include WindowsFormUnit.Form_Settings.inc}
   {$endregion FormDesigner}
   public
@@ -69,12 +69,12 @@ type
     
     procedure Activation(switched: boolean);
     begin
-      if switched = true then b_Act_Pause.Text := 'Запустить';
+      if switched = true then b_Play_Pause.Text := 'Запустить';
       groupBox_CellTypes.Enabled := switched;
       groupBox_Algorithms.Enabled := switched;
       b_ClearGrid.Enabled := switched;
       b_Stop.Enabled := not(switched);
-      b_DoStep.Enabled := switched;
+      b_Act.Enabled := switched;
     end;
     
     procedure Finish;
@@ -112,12 +112,12 @@ begin
   Activation(true);
 end;
 
-procedure Form_Settings.b_Act_Pause_Click(sender: Object; e: EventArgs);
+procedure Form_Settings.b_Play_Pause_Click(sender: Object; e: EventArgs);
 begin
   if machine.IsPlaying = false 
     then begin
         machine.IsPlaying := true;
-        b_Act_Pause.Text := 'Приостановить';
+        b_Play_Pause.Text := 'Приостановить';
         Activation(false);
         groupBox_Result.Visible := false;
         label_PathInfo.Text := '';
@@ -125,9 +125,9 @@ begin
     end
     else begin
        machine.IsPlaying := false;
-       b_Act_Pause.Text := 'Продолжить';
+       b_Play_Pause.Text := 'Продолжить';
        b_ClearGrid.Enabled := true;
-       b_DoStep.Enabled := true;
+       b_Act.Enabled := true;
     end;
 end;
 
@@ -138,12 +138,12 @@ begin
   Activation(true);
 end;
 
-procedure Form_Settings.b_DoStep_Click(sender: Object; e: EventArgs);
+procedure Form_Settings.b_Act_Click(sender: Object; e: EventArgs);
 begin
   Activation(false);
-  b_Act_Pause.Text := 'Продолжить';
+  b_Play_Pause.Text := 'Продолжить';
   b_ClearGrid.Enabled := true;
-  b_DoStep.Enabled := true;
+  b_Act.Enabled := true;
   machine.Act();
 end;
 
@@ -189,7 +189,7 @@ begin
   machine.SetSpeed(3);
 end;
 
-procedure Form_Settings.rb_algDejkstra_MouseClick(sender: Object; e: MouseEventArgs);
+procedure Form_Settings.rb_algDijkstra_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   machine.ChangeAlgorithm(0);
 end;
@@ -199,12 +199,12 @@ begin
   machine.ChangeAlgorithm(1);
 end;
 
-procedure Form_Settings.rb_algWidthSearch_MouseClick(sender: Object; e: MouseEventArgs);
+procedure Form_Settings.rb_algWFS_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   machine.ChangeAlgorithm(2);
 end;
 
-procedure Form_Settings.rb_algDeepSearch_MouseClick(sender: Object; e: MouseEventArgs);
+procedure Form_Settings.rb_algDFS_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   machine.ChangeAlgorithm(3);
 end;

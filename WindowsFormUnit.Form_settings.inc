@@ -1,19 +1,19 @@
 procedure InitializeComponent;
     begin
         self.components := new System.ComponentModel.Container();
-        self.rb_algDejkstra := new System.Windows.Forms.RadioButton();
+        self.rb_algDijkstra := new System.Windows.Forms.RadioButton();
         self.rb_algAStar := new System.Windows.Forms.RadioButton();
-        self.rb_algWidthSearch := new System.Windows.Forms.RadioButton();
-        self.rb_algDeepSearch := new System.Windows.Forms.RadioButton();
+        self.rb_algWFS := new System.Windows.Forms.RadioButton();
+        self.rb_algDFS := new System.Windows.Forms.RadioButton();
         self.rb_cell5 := new System.Windows.Forms.RadioButton();
         self.rb_cell6 := new System.Windows.Forms.RadioButton();
         self.rb_cell1 := new System.Windows.Forms.RadioButton();
         self.groupBox_Algorithms := new System.Windows.Forms.GroupBox();
         self.groupBox_CellTypes := new System.Windows.Forms.GroupBox();
         self.rb_cell0 := new System.Windows.Forms.RadioButton();
-        self.b_Act_Pause := new System.Windows.Forms.Button();
+        self.b_Play_Pause := new System.Windows.Forms.Button();
         self.b_Stop := new System.Windows.Forms.Button();
-        self.b_DoStep := new System.Windows.Forms.Button();
+        self.b_Act := new System.Windows.Forms.Button();
         self.b_ClearGrid := new System.Windows.Forms.Button();
         self.b_Exit := new System.Windows.Forms.Button();
         self.rb_speed1 := new System.Windows.Forms.RadioButton();
@@ -33,17 +33,17 @@ procedure InitializeComponent;
         self.groupBox_Result.SuspendLayout();
         self.SuspendLayout();
         // 
-        // rb_algDejkstra
+        // rb_algDijkstra
         // 
-        self.rb_algDejkstra.Checked := true;
-        self.rb_algDejkstra.Location := new System.Drawing.Point(21, 25);
-        self.rb_algDejkstra.Name := 'rb_algDejkstra';
-        self.rb_algDejkstra.Size := new System.Drawing.Size(182, 24);
-        self.rb_algDejkstra.TabIndex := 0;
-        self.rb_algDejkstra.TabStop := true;
-        self.rb_algDejkstra.Text := 'Дейкстры';
-        self.rb_algDejkstra.UseVisualStyleBackColor := true;
-        self.rb_algDejkstra.MouseClick += rb_algDejkstra_MouseClick;
+        self.rb_algDijkstra.Checked := true;
+        self.rb_algDijkstra.Location := new System.Drawing.Point(21, 25);
+        self.rb_algDijkstra.Name := 'rb_algDijkstra';
+        self.rb_algDijkstra.Size := new System.Drawing.Size(182, 24);
+        self.rb_algDijkstra.TabIndex := 0;
+        self.rb_algDijkstra.TabStop := true;
+        self.rb_algDijkstra.Text := 'Дейкстры';
+        self.rb_algDijkstra.UseVisualStyleBackColor := true;
+        self.rb_algDijkstra.MouseClick += rb_algDijkstra_MouseClick;
         // 
         // rb_algAStar
         // 
@@ -55,25 +55,25 @@ procedure InitializeComponent;
         self.rb_algAStar.UseVisualStyleBackColor := true;
         self.rb_algAStar.MouseClick += rb_algAStar_MouseClick;
         // 
-        // rb_algWidthSearch
+        // rb_algWFS
         // 
-        self.rb_algWidthSearch.Location := new System.Drawing.Point(21, 85);
-        self.rb_algWidthSearch.Name := 'rb_algWidthSearch';
-        self.rb_algWidthSearch.Size := new System.Drawing.Size(182, 24);
-        self.rb_algWidthSearch.TabIndex := 0;
-        self.rb_algWidthSearch.Text := 'Поиск в ширину';
-        self.rb_algWidthSearch.UseVisualStyleBackColor := true;
-        self.rb_algWidthSearch.MouseClick += rb_algWidthSearch_MouseClick;
+        self.rb_algWFS.Location := new System.Drawing.Point(21, 85);
+        self.rb_algWFS.Name := 'rb_algWFS';
+        self.rb_algWFS.Size := new System.Drawing.Size(182, 24);
+        self.rb_algWFS.TabIndex := 0;
+        self.rb_algWFS.Text := 'Поиск в ширину';
+        self.rb_algWFS.UseVisualStyleBackColor := true;
+        self.rb_algWFS.MouseClick += rb_algWFS_MouseClick;
         // 
-        // rb_algDeepSearch
+        // rb_algDFS
         // 
-        self.rb_algDeepSearch.Location := new System.Drawing.Point(21, 115);
-        self.rb_algDeepSearch.Name := 'rb_algDeepSearch';
-        self.rb_algDeepSearch.Size := new System.Drawing.Size(182, 24);
-        self.rb_algDeepSearch.TabIndex := 0;
-        self.rb_algDeepSearch.Text := 'Поиск в глубину';
-        self.rb_algDeepSearch.UseVisualStyleBackColor := true;
-        self.rb_algDeepSearch.MouseClick += rb_algDeepSearch_MouseClick;
+        self.rb_algDFS.Location := new System.Drawing.Point(21, 115);
+        self.rb_algDFS.Name := 'rb_algDFS';
+        self.rb_algDFS.Size := new System.Drawing.Size(182, 24);
+        self.rb_algDFS.TabIndex := 0;
+        self.rb_algDFS.Text := 'Поиск в глубину';
+        self.rb_algDFS.UseVisualStyleBackColor := true;
+        self.rb_algDFS.MouseClick += rb_algDFS_MouseClick;
         // 
         // rb_cell5
         // 
@@ -110,9 +110,9 @@ procedure InitializeComponent;
         // groupBox_Algorithms
         // 
         self.groupBox_Algorithms.Controls.Add(self.rb_algAStar);
-        self.groupBox_Algorithms.Controls.Add(self.rb_algDejkstra);
-        self.groupBox_Algorithms.Controls.Add(self.rb_algWidthSearch);
-        self.groupBox_Algorithms.Controls.Add(self.rb_algDeepSearch);
+        self.groupBox_Algorithms.Controls.Add(self.rb_algDijkstra);
+        self.groupBox_Algorithms.Controls.Add(self.rb_algWFS);
+        self.groupBox_Algorithms.Controls.Add(self.rb_algDFS);
         self.groupBox_Algorithms.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
         self.groupBox_Algorithms.Location := new System.Drawing.Point(37, 367);
         self.groupBox_Algorithms.Name := 'groupBox_Algorithms';
@@ -145,16 +145,16 @@ procedure InitializeComponent;
         self.rb_cell0.UseVisualStyleBackColor := true;
         self.rb_cell0.MouseClick += rb_cell0_MouseClick;
         // 
-        // b_Act_Pause
+        // b_Play_Pause
         // 
-        self.b_Act_Pause.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.b_Act_Pause.Location := new System.Drawing.Point(37, 246);
-        self.b_Act_Pause.Name := 'b_Act_Pause';
-        self.b_Act_Pause.Size := new System.Drawing.Size(209, 33);
-        self.b_Act_Pause.TabIndex := 4;
-        self.b_Act_Pause.Text := 'Запустить';
-        self.b_Act_Pause.UseVisualStyleBackColor := true;
-        self.b_Act_Pause.Click += b_Act_Pause_Click;
+        self.b_Play_Pause.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
+        self.b_Play_Pause.Location := new System.Drawing.Point(37, 246);
+        self.b_Play_Pause.Name := 'b_Play_Pause';
+        self.b_Play_Pause.Size := new System.Drawing.Size(209, 33);
+        self.b_Play_Pause.TabIndex := 4;
+        self.b_Play_Pause.Text := 'Запустить';
+        self.b_Play_Pause.UseVisualStyleBackColor := true;
+        self.b_Play_Pause.Click += b_Play_Pause_Click;
         // 
         // b_Stop
         // 
@@ -168,16 +168,16 @@ procedure InitializeComponent;
         self.b_Stop.UseVisualStyleBackColor := true;
         self.b_Stop.Click += b_Stop_Click;
         // 
-        // b_DoStep
+        // b_Act
         // 
-        self.b_DoStep.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
-        self.b_DoStep.Location := new System.Drawing.Point(37, 324);
-        self.b_DoStep.Name := 'b_DoStep';
-        self.b_DoStep.Size := new System.Drawing.Size(209, 37);
-        self.b_DoStep.TabIndex := 4;
-        self.b_DoStep.Text := 'Выполнить шаг';
-        self.b_DoStep.UseVisualStyleBackColor := true;
-        self.b_DoStep.Click += b_DoStep_Click;
+        self.b_Act.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
+        self.b_Act.Location := new System.Drawing.Point(37, 324);
+        self.b_Act.Name := 'b_Act';
+        self.b_Act.Size := new System.Drawing.Size(209, 37);
+        self.b_Act.TabIndex := 4;
+        self.b_Act.Text := 'Выполнить шаг';
+        self.b_Act.UseVisualStyleBackColor := true;
+        self.b_Act.Click += b_Act_Click;
         // 
         // b_ClearGrid
         // 
@@ -322,9 +322,9 @@ procedure InitializeComponent;
         self.Controls.Add(self.groupBox_Result);
         self.Controls.Add(self.b_ClearGrid);
         self.Controls.Add(self.b_Exit);
-        self.Controls.Add(self.b_DoStep);
+        self.Controls.Add(self.b_Act);
         self.Controls.Add(self.b_Stop);
-        self.Controls.Add(self.b_Act_Pause);
+        self.Controls.Add(self.b_Play_Pause);
         self.Controls.Add(self.groupBox_CellTypes);
         self.Controls.Add(self.groupBox_Algorithms);
         self.Controls.Add(self.groupBox_animSpeed);
