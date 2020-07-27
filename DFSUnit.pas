@@ -15,7 +15,7 @@
           _openSet : Stack<DFSCell>;
           _closedSet : List<DFSCell>;
           _path : List<DFSCell>;
-          
+          _current : DFSCell;
           function GetNeighbours (cell : DFSCell) : List<DFSCell>;
         public
         
@@ -37,6 +37,7 @@
                   end;
               _dfsGrid[(start.x, start.y)].distance := 0;
               _openSet.Push(_dfsGrid[(start.x, start.y)]);
+              _current := _dfsGrid[(start.x, start.y)];
             end;
             
           procedure Step(); override;
@@ -49,29 +50,38 @@
       var found : boolean;
           cell : DFSCell;
       begin
-        if (_openSet <> nil) and (_openSet.Count > 0) then
+        if (_current <> nil) then begin
+          if(_current.coords = _end)then
+            found := true
+          else begin
+            _closedSet.Add(_current);
+            var neighbours := GetNeighbours(_current);
+            var notVisitedNeighbours := new List<DFSCell>;
+            foreach var neighbour in neighbours do
+                    if not(_closedSet.Contains(neighbour))
+                    and not(_openSet.Contains(neighbour)) then
+                       begin
+                         _openSet.Push(neighbour);
+                         var newDistance := _current.distance + Distance(_current.coords.x, _current.coords.y,
+                                                                        neighbour.coords.x, neighbour.coords.y);
+                         if(newDistance < neighbour.distance) then begin
+                           neighbour.distance := newDistance;
+                           neighbour.from := _current.coords;
+                           notVisitedNeighbours.Add(neighbour);
+                         end;
+                       end;
+            if(notVisitedNeighbours.Count > 0) then
+              _current := notVisitedNeighbours[random(notVisitedNeighbours.Count)]
+            else begin
+              
+              _current := nil;
+            end;
+          end;
+        end
+        else if (_openSet <> nil) and (_openSet.Count > 0) then
           begin
-            if(cell = _dfsGrid[(_end.x, _end.y)]) then
-              found := true
-            else 
-              begin
-                var neighbours := GetNeighbours(cell);
-                foreach var neighbour in neighbours do
-                  if not(_closedSet.Contains(neighbour))
-                  and not(_openSet.Contains(neighbour)) then
-                     begin
-                       _openSet.Push(neighbour);
-                       neighbour.distance := cell.distance + Distance(cell.coords.x, cell.coords.y,
-                                                                      neighbour.coords.x, neighbour.coords.y);
-                       neighbour.from := cell.coords;
-                     end
-                  else if _openSet <> nil then
-                   begin
-                     cell := _openSet.Pop();
-                     _closedSet.Add(cell);
-                   end;
-              end;
-           end;
+            _current := _openSet.Pop();
+          end;
       
       if(found)then begin
         var tempCell := _dfsGrid[(_end.x, _end.y)];

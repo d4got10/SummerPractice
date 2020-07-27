@@ -17,7 +17,7 @@
           _closedSet : List<DijkstraCell>;
           _path : List<DijkstraCell>;
           function GetWeight(from, there: Point) : Integer;
-        
+          function GetNeighbours(cell : DijkstraCell) : List<DijkstraCell>;
         public
           constructor Create(gridSize : integer; start, finish : Point);
           begin
@@ -52,16 +52,80 @@
         GetWeight := Distance(from.x, from.y, there.x, there.y)
       else 
         GetWeight := MaxInt;    
-    end;               
+    end;    
     
     procedure Dijkstra.Step();
+    var cell : DijkstraCell;
+        found : boolean;
+    begin
+      found := false;
+      if(_openSet <> nil) and (_openSet.Count > 0) then begin
+          //Находим минимальную временную метку
+          cell := _openSet[0];
+          for var i := 1 to _openSet.Count-1 do
+            if(_openSet[i].distance < cell.distance) then
+              cell := _openSet[i];
+         
+          _openSet.Remove(cell);
+          _closedSet.Add(cell);
+          
+          if(cell.coords = _end) then
+            found := true
+          else begin
+            var neighbours := GetNeighbours(cell);
+            foreach var neighbour in neighbours do begin
+              var newDistance := cell.distance + Distance(cell.coords.x, cell.coords.y,
+                                                          neighbour.coords.x, neighbour.coords.y);
+              if(newDistance < neighbour.distance)then begin
+                neighbour.distance := newDistance;
+                neighbour.from := cell.coords;
+              end;
+              if not(_closedSet.Contains(neighbour)) and not(_openSet.Contains(neighbour)) then
+                _openSet.Add(neighbour);
+            end;      
+          end;
+      end;
+      
+      if(found)then
+      begin
+        var tempCell := _dijkstraGrid[(_end.x, _end.y)];
+        while(tempCell.coords <> _start) do begin
+          _path.Add(tempCell);
+          tempCell := _dijkstraGrid[(tempCell.from.x, tempCell.from.y)];
+        end;
+        _path.Add(tempCell);
+      end;
+      
+      if(_onStep <> nil) then
+        _onStep();
+      
+      if(found) then
+        if(_onFinish <> nil) then
+          _onFinish();
+    end;
+    
+    function Dijkstra.GetNeighbours(cell : DijkstraCell) : List<DijkstraCell>;
+    var neighbours : List<DijkstraCell>;
+        neighbour : DijkstraCell;
+    begin
+      neighbours := new List<DijkstraCell>;
+      for var x := -1 to 1 do
+      for var y := -1 to 1 do 
+        if(x <> 0) or (y <> 0) then
+          if(_dijkstraGrid.TryGetValue((cell.coords.x + x, cell.coords.y + y), neighbour)
+            and IsWalkable(cell.coords.x + x, cell.coords.y + y)) then
+            neighbours.Add(neighbour);
+      GetNeighbours := neighbours;
+    end;
+    
+    {procedure Dijkstra.Step();
     var from, there: DijkstraCell;
         found : boolean;
         weight : integer;
     begin
       if (_openSet <> nil) and (_openSet.Count > 0) then
         begin
-         from := _openSet[0]; 
+         from := _openSet[0];
          if (from.coords = _end) then
             found := true
           else
@@ -104,7 +168,7 @@
           if(_onFinish <> nil) then 
             _onFinish();
         
-    end;
+    end;}
     
     function Dijkstra.GetGridLayout() : Grid;
   begin
