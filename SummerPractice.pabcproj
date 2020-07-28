@@ -5,8 +5,6 @@
     <Item Type="SourceFile" Name="StateMachineUnit.pas" Path="StateMachineUnit.pas" />
     <Item Type="SourceFile" Name="ВFSUnit.pas" Path="ВFSUnit.pas" />
     <Item Type="SourceFile" Name="WindowsFormUnit.pas" Path="WindowsFormUnit.pas" />
-    <Item Type="SourceFile" Name="DiekstraUnit.pas" Path="DiekstraUnit.pas" />
-    <Item Type="SourceFile" Name="DepthFirstSearchUnit.pas" Path="DepthFirstSearchUnit.pas" />
     <Item Type="SourceFile" Name="AStarUnit.pas" Path="AStarUnit.pas" />
     <Item Type="Reference" AssemblyName="System" FullAssemblyName="System.dll" />
     <Item Type="Reference" AssemblyName="System.Windows.Forms" FullAssemblyName="System.Windows.Forms.dll" />

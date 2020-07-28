@@ -13,12 +13,13 @@ var
   celltype: integer;
   c: Color;
   machine: StateMachine;
+  canEdit: boolean;
 
 implementation
 
 procedure ColorCell(x, y: real; mb: integer);
 begin
-  if mb = 1 then  begin
+  if (mb = 1)and(canEdit = true) then  begin
     machine.ClearAlgorithmLayout();
     machine.SetCellType(celltype, trunc(x), trunc(y));
   end;
@@ -58,6 +59,7 @@ begin
 end;
 
 begin
+  canEdit := true;
   machine := new StateMachine(20);
   machine.OnGridChange := Animation;
   Pen.Color := Colors.White;
