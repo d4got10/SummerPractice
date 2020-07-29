@@ -6,6 +6,12 @@ type
   Point = record
     x: integer;
     y: integer;
+    
+    constructor Create(xx, yy : integer);
+    begin
+      x := xx;
+      y := yy;
+    end;
   end;
   intArray = array of integer;
   boolArray = array of boolean;
@@ -79,7 +85,9 @@ implementation
   
   function Algorithm.IsWalkable(x, y : integer) : boolean;
   begin
-    if(_grid[x][y] = 1) then
+    if(x < 0) or (x > _gridSize-1) or (y < 0) or (y > _gridSize-1) then
+      IsWalkable := false
+    else if(_grid[x][y] = 1) then
       IsWalkable := false
     else
       IsWalkable := true;

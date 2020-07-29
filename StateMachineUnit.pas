@@ -1,7 +1,7 @@
 ﻿unit StateMachineUnit;
 
 interface
-  uses AlgorithmUnit, AStarUnit, ВFSUnit, DijkstraUnit, DFSUnit;
+  uses AlgorithmUnit, AStarUnit, ВFSUnit, DijkstraUnit, DFSUnit, JPSUnit;
 
   type     
     StateMachine = class
@@ -208,7 +208,7 @@ implementation
       0: _algorithm := new Dijkstra(_gridSize, _start, _end);
       1: _algorithm := new AStar(_gridSize, _start, _end);
       2: _algorithm := new BFS(_gridSize, _start, _end);
-      3: _algorithm := new DFS(_gridSize, _start, _end);
+      3: _algorithm := new JPS(_gridSize, _start, _end);
     end;
     _algorithm.GridData := _grid;
     _algorithm.OnStep += OnAlgorithmStep;

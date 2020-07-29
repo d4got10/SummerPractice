@@ -13,7 +13,7 @@ interface
       from : Point;
     end;
     AStar = class(Algorithm)
-      private
+      protected
         _aStarGrid : Dictionary<(integer, integer), AStarCell>;
         _openSet : List<AStarCell>;
         _closedSet : List<AStarCell>;
@@ -111,7 +111,7 @@ implementation
             var gCost := cell.gCost + Distance(cell.coords.x, cell.coords.y, neighbour.coords.x, neighbour.coords.y);
             var hCost := Distance(neighbour.coords.x, neighbour.coords.y, _end.x, _end.y);
             var fCost := gCost + hCost;
-            if(neighbour.fCost > fCost) {or (neighbour.fCost = fCost) and (neighbour.hCost > hCost)} then 
+            if(neighbour.fCost > fCost)then 
               begin           
                 neighbour.gCost := gCost;
                 neighbour.hCost := hCost;
