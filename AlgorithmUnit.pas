@@ -14,9 +14,7 @@ type
     end;
   end;
   intArray = array of integer;
-  boolArray = array of boolean;
   Grid = array of array of integer;
-  GridMark = array of array of boolean;
   
   Action = procedure;
   ActionInt = procedure(data: integer);
@@ -26,7 +24,6 @@ type
       //Массивы
       _grid: Grid;
       _gridSize: integer;
-      _gridMark: GridMark;
       //События
       _onStep: Action;
       _onFinish: Action;
@@ -47,15 +44,10 @@ type
         _grid := new intArray[_gridSize];
         for var i := 0 to _gridSize - 1 do
           _grid[i] := new integer[_gridSize];
-        
-        _gridMark := new boolArray[_gridSize];
-        for var i := 0 to _gridSize - 1 do
-          _gridMark[i] := new boolean[_gridSize];
       end;
       
       //Поля
       property GridData: Grid read _grid write _grid;
-      property MarkData: GridMark read _gridMark write _gridMark;
       
       //События
       property OnStep: Action read _onStep write _onStep;
@@ -107,10 +99,6 @@ implementation
     _grid := new intArray[_gridSize];
     for var i := 0 to _gridSize - 1 do
       _grid[i] := new integer[_gridSize];
-    
-    _gridMark := new boolArray[_gridSize];
-    for var i := 0 to _gridSize - 1 do
-      _gridMark[i] := new boolean[_gridSize];
   end;
   
   function Algorithm.GetPathLength() : integer;
