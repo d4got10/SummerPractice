@@ -75,6 +75,7 @@ type
       b_ClearGrid.Enabled := switched;
       b_Stop.Enabled := not(switched);
       b_Act.Enabled := switched;
+      canEdit := switched;
     end;
     
     procedure Finish;
