@@ -28,13 +28,13 @@ type
     procedure rb_algDijkstra_MouseClick(sender: Object; e: MouseEventArgs);
     procedure rb_algAStar_MouseClick(sender: Object; e: MouseEventArgs);
     procedure rb_algWFS_MouseClick(sender: Object; e: MouseEventArgs);
-    procedure rb_algDFS_MouseClick(sender: Object; e: MouseEventArgs);
+    procedure rb_algJPS_MouseClick(sender: Object; e: MouseEventArgs);
   {$region FormDesigner}
   private
     {$resource WindowsFormUnit.Form_Settings.resources}
     rb_algAStar: RadioButton;
     rb_algWFS: RadioButton;
-    rb_algDFS: RadioButton;
+    rb_algJPS: RadioButton;
     rb_cell5: RadioButton;
     rb_cell6: RadioButton;
     rb_cell1: RadioButton;
@@ -81,6 +81,10 @@ type
     procedure Finish;
     begin
       Activation(true);
+      if machine.HasPath = true then
+        label_info.Text := 'Длина шага напрямую 10, по диагонали 14'
+      else
+        label_info.Text := 'Проложить путь невозможно';
       label_PathInfo.Text := IntToStr(machine.PathLength);
       label_CellsResearchedInfo.Text := IntToStr(machine.ClosedCells);
       groupBox_Result.Visible := true;
@@ -135,7 +139,7 @@ end;
 procedure Form_Settings.b_Stop_Click(sender: Object; e: EventArgs);
 begin
   machine.IsPlaying := false;
-  machine.ClearGrid();
+  machine.ClearAlgorithmLayout();
   Activation(true);
 end;
 
@@ -205,7 +209,7 @@ begin
   machine.ChangeAlgorithm(2);
 end;
 
-procedure Form_Settings.rb_algDFS_MouseClick(sender: Object; e: MouseEventArgs);
+procedure Form_Settings.rb_algJPS_MouseClick(sender: Object; e: MouseEventArgs);
 begin
   machine.ChangeAlgorithm(3);
 end;
