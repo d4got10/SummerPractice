@@ -16,7 +16,6 @@
           _openSet : List<DijkstraCell>;
           _closedSet : List<DijkstraCell>;
           _path : List<DijkstraCell>;
-          function GetWeight(from, there: Point) : Integer;
           function GetNeighbours(cell : DijkstraCell) : List<DijkstraCell>;
         public
           constructor Create(gridSize : integer; start, finish : Point);
@@ -45,15 +44,6 @@
           function GetPathLength() : integer; override;
       end;
   Implementation
-    function Dijkstra.GetWeight(from, there: Point) : Integer;
-    begin
-      if IsWalkable(from.x, from.y) and IsWalkable(there.x, there.y) 
-      and (Distance(from.x, from.y, there.x, there.y) < 20)  then
-        GetWeight := Distance(from.x, from.y, there.x, there.y)
-      else 
-        GetWeight := MaxInt;    
-    end;    
-    
     procedure Dijkstra.Step();
     var cell : DijkstraCell;
         found : boolean;
@@ -121,58 +111,6 @@
             neighbours.Add(neighbour);
       GetNeighbours := neighbours;
     end;
-    
-    {procedure Dijkstra.Step();
-    var from, there: DijkstraCell;
-        found : boolean;
-        weight : integer;
-    begin
-      if (_openSet <> nil) and (_openSet.Count > 0) then
-        begin
-         from := _openSet[0];
-         if (from.coords = _end) then
-            found := true
-          else
-            begin
-              for var x := 0 to _gridSize - 1 do
-                for var y := 0 to _gridSize - 1 do
-                  if not (_openSet.Contains(there)) 
-                  and (there.distance > from.distance + GetWeight(from.coords, there.coords)) then
-                    begin
-                      there.distance := from.distance + GetWeight(from.coords, there.coords);
-                      _closedSet.Add(there);
-                    end;
-              weight := MaxInt;
-              for var x := 0 to _gridSize - 1 do
-                for var y := 0 to _gridSize - 1 do
-                  if not (_openSet.Contains(there)) then
-                    if weight > there.distance then
-                      begin
-                        weight := there.distance;
-                        there.from := there.coords;
-                        from := there
-                      end;
-              _openSet.Add(from);
-            end;
-        end;
-        
-        if(found)then
-          begin 
-            while(there.coords <> _start) do
-            begin
-              _path.Add(there);
-              there := _dijkstraGrid[(there.from.x, there.from.y)];
-            end;     
-          end;
-          
-        if(_onStep <> nil) then
-          _onStep();
-    
-        if(found) then
-          if(_onFinish <> nil) then 
-            _onFinish();
-        
-    end;}
     
     function Dijkstra.GetGridLayout() : Grid;
   begin
