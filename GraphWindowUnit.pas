@@ -11,7 +11,6 @@ const
   
 var
   celltype: integer;
-  c: Color;
   machine: StateMachine;
   canEdit: boolean;
 
@@ -27,7 +26,7 @@ end;
 
 procedure DrawGrid;
 begin
-  SetMathematicCoords(0, 20, 0, true);
+  SetMathematicCoords(0, n, 0, true);
   for var x:=0 to n-1 do
     for var y:=0 to n-1 do begin
       case machine.GridData[x,y] of
