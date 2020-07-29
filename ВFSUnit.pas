@@ -12,10 +12,11 @@ interface
     BFS = class(Algorithm)
       private
       _bfsGrid : Dictionary<(integer, integer), BFSCell>;
-      _openSet : Queue<BFSCell>;
+      _openSet : List<BFSCell>;
       _closedSet : List<BFSCell>;
       _path : List<BFSCell>;
       
+      procedure AddToQueue(cell : BFSCell);
       function GetNeighbours(cell : BFSCell) : List<BFSCell>; 
       public
       
@@ -23,7 +24,7 @@ interface
       begin
         Inherited Create(gridSize, start, finish);
         _bfsGrid := new Dictionary<(integer, integer), BFSCell>;
-        _openSet := new Queue<BFSCell>;
+        _openSet := new List<BFSCell>;
         _closedSet := new List<BFSCell>;
         _path := new List<BFSCell>;
         for var x := 0 to _gridSize - 1 do
@@ -36,7 +37,7 @@ interface
             _bfsGrid.Add((x,y), tempCell);
           end;
         _bfsGrid[(start.x, start.y)].distance := 0;
-        _openSet.Enqueue(_bfsGrid[(start.x, start.y)]);
+        _openSet.Add(_bfsGrid[(start.x, start.y)]);
       end;
       
       procedure Step(); override;
@@ -49,7 +50,8 @@ implementation
     begin
       if(_openSet <> nil) and (_openSet.Count > 0) then
       begin
-        var cell := _openSet.Dequeue();
+        var cell := _openSet[0];
+        _openSet.Remove(cell);
         _closedSet.Add(cell);
         
         if(cell = _bfsGrid[(_end.x, _end.y)]) then
@@ -57,14 +59,13 @@ implementation
         
         var neighbours := GetNeighbours(cell);
         foreach var neighbour in neighbours do
-          if not(_closedSet.Contains(neighbour)) then begin
-             var newDist := cell.distance + Distance(cell.coords.x, cell.coords.y,
-                                                                neighbour.coords.x, neighbour.coords.y);
+          if not(_closedSet.Contains(neighbour)) and not(_openSet.Contains(neighbour)) then begin
+             var newDist := Distance(neighbour.coords.x, neighbour.coords.y, _end.x, _end.y);
              if (neighbour.distance > newDist) then
                begin
-                 _openSet.Enqueue(neighbour);
                  neighbour.distance := newDist;
                  neighbour.from := cell.coords;
+                 AddToQueue(neighbour); //Добавка
                end;
           end;
       end else
@@ -117,6 +118,49 @@ implementation
             and IsWalkable(cell.coords.x + x, cell.coords.y + y)) then
             neighbours.Add(neighbour);
       GetNeighbours := neighbours;
+    end;
+    
+    procedure BFS.AddToQueue(cell : BFSCell);
+    var left, right, middle: integer;
+    begin
+      cell.distance := Distance(cell.coords.x, cell.coords.y, _end.x, _end.y);
+      
+      if(cell.distance = 150) then
+        writeln();
+      
+      if(_openSet.Count = 0) then begin
+        _openSet.Add(cell);
+        exit;
+      end;
+      
+      left := -1;
+      right := _openSet.Count;
+      middle := (left + right) div 2;
+      while abs(left - right) > 1 do begin
+        middle := (left + right) div 2;
+        if cell.distance = _openSet[middle].distance then
+          begin
+            left := middle;
+            right := middle;
+          end
+        else
+          begin
+            if cell.distance < _openSet[middle].distance then begin
+              right := middle;
+              end
+            else begin
+              left := middle;
+              end;
+          end;
+      end;
+      if(cell.distance < _openSet[middle].distance) then
+        _openSet.Insert(middle, cell)
+      else
+        _openSet.Insert(middle+1, cell);
+      
+      //for var i := 0 to _openSet.Count-1 do
+      //  write(_openSet[i].distance, ' ');
+      //writeln();
     end;
     
     function BFS.GetPathLength() : integer;
