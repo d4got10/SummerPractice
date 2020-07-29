@@ -67,7 +67,11 @@ implementation
                  neighbour.from := cell.coords;
                end;
           end;
-      end;
+      end else
+      if(_onFinish <> nil) and not(found) then begin
+          _onFinish();
+          exit;
+          end;
       
       if(found)then begin
         var tempCell := _bfsGrid[(_end.x, _end.y)];

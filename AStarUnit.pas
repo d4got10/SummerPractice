@@ -77,8 +77,12 @@ implementation
             _openSet.Add(neighbour);
               
         _closedSet.Add(cell);
-      end;
-    end;
+      end
+    end else
+      if(_onFinish <> nil) and not(found) then begin
+          _onFinish();
+          exit;
+          end;
     
     if(found)then 
     begin 

@@ -84,7 +84,11 @@
                 _openSet.Add(neighbour);
             end;      
           end;
-      end;
+      end else
+        if(_onFinish <> nil) and not(found) then begin
+          _onFinish();
+          exit;
+          end;
       
       if(found)then
       begin

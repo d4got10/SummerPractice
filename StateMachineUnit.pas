@@ -19,6 +19,7 @@ interface
         _end : Point;
         _algorithmNumber : integer;
         _algorithm : Algorithm;
+        _hasPath : boolean;
         
         _openCells : integer;
         _closedCells : integer;
@@ -44,6 +45,7 @@ interface
         property OpenCells : integer read _openCells;
         property ClosedCells : integer read _closedCells;
         property PathLength : integer read _pathLength;
+        property HasPath : boolean read _hasPath;
         
         //События
         property OnGridChange : Action read _onGridChange write _onGridChange;
@@ -186,7 +188,7 @@ implementation
     _openCells := 0;
     _closedCells := 0;
     _pathLength := _algorithm.GetPathLength();
-    
+    _hasPath := (_pathLength > 0);
     
     for var x:=0 to _gridSize-1 do
         for var y:=0 to _gridSize-1 do

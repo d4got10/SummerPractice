@@ -8,6 +8,7 @@
     <Item Type="SourceFile" Name="AStarUnit.pas" Path="AStarUnit.pas" />
     <Item Type="SourceFile" Name="JPSUnit.pas" Path="JPSUnit.pas" />
     <Item Type="SourceFile" Name="AlgorithmUnit.pas" Path="AlgorithmUnit.pas" />
+    <Item Type="SourceFile" Name="DijkstraUnit.pas" Path="DijkstraUnit.pas" />
     <Item Type="Reference" AssemblyName="System" FullAssemblyName="System.dll" />
     <Item Type="Reference" AssemblyName="System.Windows.Forms" FullAssemblyName="System.Windows.Forms.dll" />
     <Item Type="Reference" AssemblyName="System.Drawing" FullAssemblyName="System.Drawing.dll" />
