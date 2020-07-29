@@ -4,7 +4,7 @@ procedure InitializeComponent;
         self.rb_algDijkstra := new System.Windows.Forms.RadioButton();
         self.rb_algAStar := new System.Windows.Forms.RadioButton();
         self.rb_algWFS := new System.Windows.Forms.RadioButton();
-        self.rb_algDFS := new System.Windows.Forms.RadioButton();
+        self.rb_algJPS := new System.Windows.Forms.RadioButton();
         self.rb_cell5 := new System.Windows.Forms.RadioButton();
         self.rb_cell6 := new System.Windows.Forms.RadioButton();
         self.rb_cell1 := new System.Windows.Forms.RadioButton();
@@ -65,15 +65,15 @@ procedure InitializeComponent;
         self.rb_algWFS.UseVisualStyleBackColor := true;
         self.rb_algWFS.MouseClick += rb_algWFS_MouseClick;
         // 
-        // rb_algDFS
+        // rb_algJPS
         // 
-        self.rb_algDFS.Location := new System.Drawing.Point(21, 115);
-        self.rb_algDFS.Name := 'rb_algDFS';
-        self.rb_algDFS.Size := new System.Drawing.Size(182, 24);
-        self.rb_algDFS.TabIndex := 0;
-        self.rb_algDFS.Text := 'Поиск в глубину';
-        self.rb_algDFS.UseVisualStyleBackColor := true;
-        self.rb_algDFS.MouseClick += rb_algDFS_MouseClick;
+        self.rb_algJPS.Location := new System.Drawing.Point(21, 115);
+        self.rb_algJPS.Name := 'rb_algJPS';
+        self.rb_algJPS.Size := new System.Drawing.Size(182, 24);
+        self.rb_algJPS.TabIndex := 0;
+        self.rb_algJPS.Text := 'Прыгающих вершин';
+        self.rb_algJPS.UseVisualStyleBackColor := true;
+        self.rb_algJPS.MouseClick += rb_algJPS_MouseClick;
         // 
         // rb_cell5
         // 
@@ -112,7 +112,7 @@ procedure InitializeComponent;
         self.groupBox_Algorithms.Controls.Add(self.rb_algAStar);
         self.groupBox_Algorithms.Controls.Add(self.rb_algDijkstra);
         self.groupBox_Algorithms.Controls.Add(self.rb_algWFS);
-        self.groupBox_Algorithms.Controls.Add(self.rb_algDFS);
+        self.groupBox_Algorithms.Controls.Add(self.rb_algJPS);
         self.groupBox_Algorithms.Font := new System.Drawing.Font('Microsoft Sans Serif', 9);
         self.groupBox_Algorithms.Location := new System.Drawing.Point(37, 367);
         self.groupBox_Algorithms.Name := 'groupBox_Algorithms';
@@ -133,7 +133,7 @@ procedure InitializeComponent;
         self.groupBox_CellTypes.Size := new System.Drawing.Size(209, 160);
         self.groupBox_CellTypes.TabIndex := 1;
         self.groupBox_CellTypes.TabStop := false;
-        self.groupBox_CellTypes.Text := 'Ячейки';
+        self.groupBox_CellTypes.Text := 'Тип клетки';
         // 
         // rb_cell0
         // 
